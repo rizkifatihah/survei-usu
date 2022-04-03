@@ -353,7 +353,7 @@ class MasterData extends CI_Controller
 		if ($param1 == 'doCreate') {
 			$nama_kategori = $this->input->post('nama_kategori');
 			$data = array(
-				'nama_kategori' => $nama_kategori,
+				'nama_kategori' => strtoupper($nama_kategori),
 				'created_by' => $this->session->userdata('id_pengguna'),
 				'created_time' => date('Y-m-d H:i:s')
 			);
@@ -379,7 +379,7 @@ class MasterData extends CI_Controller
 		if ($param1 == 'doUpdate') {
 			$nama_kategori = $this->input->post('nama_kategori');
 			$data = array(
-				'nama_kategori' => $nama_kategori,
+				'nama_kategori' => strtoupper($nama_kategori),
 			);
 
 			if ($this->GeneralModel->update_general('survei_kategori', 'id_kategori', $param2, $data) == TRUE) {
@@ -408,6 +408,101 @@ class MasterData extends CI_Controller
 		} else {
 			$this->session->set_flashdata('notif', '<div class="alert alert-danger">Category failed to delete</div>');
 			redirect(changeLink('panel/masterData/categories/'));
+		}
+	}
+
+	//--------------- SERVICE BEGIN------------------//
+
+	public function services($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		if($param1=='cari'){
+			$kategori_unit = $this->input->post('kategori_unit');
+			return $this->MasterDataModel->getService($kategori_unit);
+		}else{
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'List Of Services';
+			$data['content'] = 'panel/masterData/service/index';
+			$data['category'] = $this->GeneralModel->get_general('survei_kategori');
+			$data['kategori_unit'] = $this->input->get('category');
+			$this->load->view('panel/content', $data);
+		}
+	}
+
+	public function createService($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		if ($param1 == 'doCreate') {
+			$nama_unit_kerja = $this->input->post('nama_unit_kerja');
+			$kategori_unit = $this->input->post('kategori_unit');
+			$dataService = array(
+				'nama_unit_kerja' => strtoupper($nama_unit_kerja),
+				'kategori_unit' => $kategori_unit,
+				'keterangan_standar_pelayanan' => $this->input->post('keterangan_standar_pelayanan'),
+				'created_by' => $this->session->userdata('id_pengguna'),
+				'created_time' => date('Y-m-d H:i:s')
+			);
+
+			if ($this->GeneralModel->create_general('survei_standar_pelayanan', $dataService) == TRUE) {
+				$this->session->set_flashdata('notif', '<div class="alert alert-success">Service added successfully</div>');
+				redirect(changeLink('panel/masterData/services?category='.$kategori_unit));
+			} else {
+				$this->session->set_flashdata('notif', '<div class="alert alert-danger">Service failed to add</div>');
+				redirect(changeLink('panel/masterData/services?category='.$kategori_unit));
+			}
+		} else {
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'Add Service';
+			$data['content'] = 'panel/masterData/service/create';
+			$data['kategori_unit'] = $this->input->get('category');
+			$data['category'] = $this->GeneralModel->get_general('survei_kategori');
+			$this->load->view('panel/content', $data);
+		}
+	}
+
+	public function updateService($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		if ($param1 == 'doUpdate') {
+			$nama_unit_kerja = $this->input->post('nama_unit_kerja');
+			$kategori_unit = $this->input->post('kategori_unit');
+			$data = array(
+				'nama_unit_kerja' => strtoupper($nama_unit_kerja),
+				'kategori_unit' => $kategori_unit,
+				'keterangan_standar_pelayanan' => $this->input->post('keterangan_standar_pelayanan'),
+				'updated_by' => $this->session->userdata('id_pengguna'),
+				'updated_time' => date('Y-m-d H:i:s')
+			);
+
+			if ($this->GeneralModel->update_general('survei_standar_pelayanan', 'id_standar_pelayanan', $param2, $data) == TRUE) {
+				$this->session->set_flashdata('notif', '<div class="alert alert-success">Service successfully updated</div>');
+				redirect(changeLink('panel/masterData/services?category='.$kategori_unit));
+			} else {
+				$this->session->set_flashdata('notif', '<div class="alert alert-danger">Service failed to update</div>');
+				redirect(changeLink('panel/masterData/services?category='.$kategori_unit));
+			}
+		} else {
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'Update Service';
+			$data['content'] = 'panel/masterData/service/update';
+			$data['id'] = $param1;
+			$data['service'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan', 'id_standar_pelayanan', $param1);
+			$data['kategori_unit'] = $this->input->get('category');
+			$data['category'] = $this->GeneralModel->get_general('survei_kategori');
+			$this->load->view('panel/content', $data);
+		}
+	}
+
+	public function deleteService($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		$cekData = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan', 'id_standar_pelayanan', $param1);
+		if ($this->GeneralModel->delete_general('survei_standar_pelayanan', 'id_standar_pelayanan', $param1) == TRUE) {
+			$this->session->set_flashdata('notif', '<div class="alert alert-success">Service successfully deleted</div>');
+			redirect(changeLink('panel/masterData/services?category='.$cekData[0]->kategori_unit));
+		} else {
+			$this->session->set_flashdata('notif', '<div class="alert alert-danger">Service failed to delete</div>');
+			redirect(changeLink('panel/masterData/services?category='.$cekData[0]->kategori_unit));
 		}
 	}
 }

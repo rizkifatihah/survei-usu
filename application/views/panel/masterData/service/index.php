@@ -28,7 +28,23 @@
         </div>
         <div class="panel-body">
           <?php echo $this->session->flashdata('notif'); ?>
-          <a href="<?php echo base_url(changeLink('panel/masterData/createCategory/')); ?>" class="btn btn-xs btn-primary pull-right">Add Category</a>
+          <div class="col-md-6">
+            <select class="form-control select2" id="kategori_unit" onchange="cariKategori(this.value)">
+              <option value="">.:Select Category:.</option>
+              <?php foreach ($category as $key) : ?>
+                <option value="<?php echo $key->nama_kategori; ?>"><?php echo $key->nama_kategori; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+          <script type="text/javascript">
+            function cariKategori(val) {
+              location.replace('<?php echo base_url(changeLink('panel/masterData/services?category=')); ?>' + val)
+            }
+          </script>
+          <script>
+            $('#kategori_unit').val('<?php echo $kategori_unit; ?>')
+          </script>
+          <a href="<?php echo base_url(changeLink('panel/masterData/createService?category=').$kategori_unit); ?>" class="btn btn-xs btn-primary pull-right">Add Service</a>
           <br />
           <br />
           <br />
@@ -37,6 +53,8 @@
               <tr>
                 <th>No</th>
                 <th>Name</th>
+                <th>Category</th>
+                <th>Description</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -72,8 +90,11 @@
       "lengthChange": true,
       // Load data for the table's content from an Ajax source
       "ajax": {
-        "url": '<?php echo site_url(changeLink('panel/masterData/categories/cari')); ?>',
+        "url": '<?php echo site_url(changeLink('panel/masterData/services/cari')); ?>',
         "type": "POST",
+        "data": {
+          "kategori_unit": "<?php echo $kategori_unit; ?>"
+        }
       },
       //Set column definition initialisation properties.
       "columns": [{
@@ -85,16 +106,20 @@
           }
         },
         {
-          "data": "nama_kategori",
+          "data": "nama_unit_kerja",
+          width: 100,
+        },
+        {
+          "data": "kategori_unit",
+          width: 100,
+        },
+        {
+          "data": "keterangan_standar_pelayanan",
           width: 100,
         },
         {
           "data": "action",
           width: 100,
-          render: function(data, type, row, meta) {
-            var buttonDetail = '<a href="<?php echo base_url(changeLink('panel/masterData/services?category=')); ?>' + row.nama_kategori + '" class="btn btn-xs btn-primary" style="margin-top:5px;margin-right:3px;"><i class="fa fa-eye"></i></a>';
-            return buttonDetail+row.action;
-          }
         },
       ],
     });

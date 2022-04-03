@@ -1,4 +1,4 @@
-<?php foreach($category as $key):?>
+<?php foreach($service as $key):?>
 <!-- begin #content -->
 <div id="content" class="content">
   <!-- begin breadcrumb -->
@@ -29,12 +29,36 @@
         </div>
         <div class="panel-body">
           <?php echo $this->session->flashdata('notif'); ?>
-          <form class="form-horizontal" method="post" action="<?php echo base_url(changeLink('panel/masterData/updateCategory/doUpdate/'.$key->id_kategori)); ?>">
+          <form class="form-horizontal" method="post" action="<?php echo base_url(changeLink('panel/masterData/updateService/doUpdate/'.$key->id_standar_pelayanan)); ?>">
           <div class="col-md-12">
               <div class="form-group">
-                <label class="col-md-2 control-label">Name</label>
+                <label class="col-md-2 control-label">Name Service</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" name="nama_kategori" value="<?php echo $key->nama_kategori?>" required>
+                  <input type="text" class="form-control" name="nama_unit_kerja" value="<?php echo $key->nama_unit_kerja?>" required>
+  			       </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Category</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="kategori_unit" id="kategori_unit" required>
+                      <option value="">-- Choose Category --</option>
+                      <?php foreach($category as $k): ?>
+                        <option value="<?php echo $k->nama_kategori; ?>"><?php echo $k->nama_kategori; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  <script>
+                  $('#kategori_unit').val('<?php echo $key->kategori_unit; ?>')
+                  </script>
+  			       </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Info Service</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" name="keterangan_standar_pelayanan">
   			       </div>
               </div>
             </div>

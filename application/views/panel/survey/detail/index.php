@@ -93,7 +93,7 @@
           "data": "kode_survei",
           width: 100,
           render: function(data, type, row, meta) {
-              return '<a href="<?php echo base_url()?>'+row.kode_survei+'" target="_blank"><?php echo base_url()?>'+row.kode_survei+'</a>';
+              return '<a href="<?php echo base_url('survei/')?>'+row.kode_survei+'" target="_blank"><?php echo base_url('survei/')?>'+row.kode_survei+'</a>';
           }
         },
         {
@@ -103,7 +103,7 @@
             if(row.status == 'Belum Digunakan'){
                 return '<span class="label label-danger">Not Used</span>';
             }else if(row.status == 'Digunakan'){
-                return '<span class="label label-success">Used</span>';
+                return '<a class="label label-success" href="<?php echo base_url('panel/survei/answerSurvei/')?>'+row.kode_survei+'">Used</a>';
             }
           }
         }

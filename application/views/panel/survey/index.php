@@ -30,11 +30,11 @@
           <?php echo $this->session->flashdata('notif'); ?>
           <form action="<?php echo base_url('panel/survey/listSurvey'); ?>" class="form-horizontal" method="GET">
             <div class="col-md-4">
-                <label for="">Dari Tgl</label>
+                <label for="">Start Date</label>
               <input type="date" class="form-control" name="dari" value="<?php echo $dari; ?>">
             </div>
             <div class="col-md-4">
-                <label for="">Sampai Tgl</label>
+                <label for="">End Date</label>
               <input type="date" class="form-control" name="sampai" value="<?php echo $sampai; ?>">
             </div>
             <div class="col-md-2">

@@ -37,4 +37,21 @@ class MasterDataModel extends CI_Model {
     return print_r($this->datatables->generate('json'));
   }
 
+  public function getQuestion()
+  {
+    $this->datatables->select('*,survei_pertanyaan.id_pertanyaan as id_pertanyaan');
+    $this->datatables->from('survei_pertanyaan');
+    $this->datatables->where("status = '1'");
+    $this->datatables->add_column(
+      'action',
+       anchor(changeLink('panel/masterData/updateQuestion/$1'), '<i class="fa fa-edit"></i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
+      . anchor(changeLink('panel/masterData/deleteQuestion/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete question?')")),
+      'id_pertanyaan'
+    );
+    if (!empty($kategori_unit)) {
+      $this->datatables->where("kategori_unit = '$kategori_unit'");
+    }
+    return print_r($this->datatables->generate('json'));
+  }
+
 }

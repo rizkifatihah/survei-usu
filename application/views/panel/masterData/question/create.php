@@ -28,12 +28,12 @@
         </div>
         <div class="panel-body">
           <?php echo $this->session->flashdata('notif'); ?>
-          <form class="form-horizontal" method="post" action="<?php echo base_url(changeLink('panel/masterData/createService/doCreate/')); ?>">
+          <form class="form-horizontal" method="post" action="<?php echo base_url(changeLink('panel/masterData/createQuestion/doCreate/')); ?>">
             <div class="col-md-12">
               <div class="form-group">
-                <label class="col-md-2 control-label">Name Service</label>
+                <label class="col-md-2 control-label">Name Question</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" name="nama_unit_kerja" required>
+                  <input type="text" class="form-control" name="pertanyaan" required>
   			       </div>
               </div>
             </div>
@@ -41,36 +41,19 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">Category</label>
                 <div class="col-md-10">
-                  <?php if($kategori_unit): ?>
-                    <input type="text" class="form-control" name="kategori_unit" value="<?php echo $this->input->get('category')?>" readonly>
-                  <?php else: ?>
-                    <select class="form-control select2" name="kategori_unit" required>
-                      <option value="">-- Choose Category --</option>
-                      <?php foreach($category as $k): ?>
-                        <option value="<?php echo $k->nama_kategori; ?>"><?php echo $k->nama_kategori; ?></option>
-                      <?php endforeach; ?>
-                    </select>
-                  <?php endif; ?>
-  			       </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="col-md-2 control-label">Info Service</label>
-                <div class="col-md-10">
-                  <input type="text" class="form-control" name="keterangan_standar_pelayanan">
-  			       </div>
+                <select class="form-control select2" name="kategori_jawaban" required>
+                    <option value="">-- Choose Category --</option>
+                    <option value="1">Sentence</option>
+                    <option value="2">Number</option>
+                    <option value="3">Yes or No</option>
+                </select>
               </div>
             </div>
             <hr />
             <div class="form-group">
               <div class="col-md-12">
                 <button type="submit" class="btn btn-sm btn-success  pull-right" style="margin-left:10px">Save</button>
-                <?php if($kategori_unit): ?>
-                <a href="<?php echo base_url(changeLink('panel/masterData/services?category=').$this->input->get('category')); ?>" class="btn btn-sm btn-danger pull-right">Cancel</a>
-                <?php else: ?>
-                <a href="<?php echo base_url(changeLink('panel/masterData/services')); ?>" class="btn btn-sm btn-danger pull-right">Cancel</a>
-                <?php endif; ?>
+                <a href="<?php echo base_url(changeLink('panel/masterData/question/')); ?>" class="btn btn-sm btn-danger pull-right">Cancel</a>
               </div>
             </div>
         </div>

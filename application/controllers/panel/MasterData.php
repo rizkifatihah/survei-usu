@@ -505,4 +505,92 @@ class MasterData extends CI_Controller
 			redirect(changeLink('panel/masterData/services?category='.$cekData[0]->kategori_unit));
 		}
 	}
+
+	//--------------- QUESTION BEGIN------------------//
+
+	public function question($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		if($param1=='cari'){
+			return $this->MasterDataModel->getQuestion();
+		}else{
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'List Of Question';
+			$data['content'] = 'panel/masterData/question/index';
+			$this->load->view('panel/content', $data);
+		}
+	}
+
+	public function createQuestion($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		if ($param1 == 'doCreate') {
+			$dataQuestion = array(
+				'pertanyaan' => strtoupper($this->input->post('pertanyaan')),
+				'kategori_jawaban' => $this->input->post('kategori_jawaban'),
+				'created_by' => $this->session->userdata('id_pengguna'),
+				'created_time' => date('Y-m-d H:i:s')
+			);
+
+			if ($this->GeneralModel->create_general('survei_pertanyaan', $dataQuestion) == TRUE) {
+				$this->session->set_flashdata('notif', '<div class="alert alert-success">Question added successfully</div>');
+				redirect(changeLink('panel/masterData/question'));
+			} else {
+				$this->session->set_flashdata('notif', '<div class="alert alert-danger">Question failed to add</div>');
+				redirect(changeLink('panel/masterData/question'));
+			}
+		} else {
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'Add Question';
+			$data['content'] = 'panel/masterData/question/create';
+			$this->load->view('panel/content', $data);
+		}
+	}
+
+	public function updateQuestion($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		if ($param1 == 'doUpdate') {
+			$data = array(
+				'pertanyaan' => strtoupper($this->input->post('pertanyaan')),
+				'kategori_jawaban' => $this->input->post('kategori_jawaban'),
+				'updated_by' => $this->session->userdata('id_pengguna'),
+				'updated_time' => date('Y-m-d H:i:s')
+			);
+
+			if ($this->GeneralModel->update_general('survei_pertanyaan', 'id_pertanyaan', $param2, $data) == TRUE) {
+				$this->session->set_flashdata('notif', '<div class="alert alert-success">Question successfully updated</div>');
+				redirect(changeLink('panel/masterData/question'));
+			} else {
+				$this->session->set_flashdata('notif', '<div class="alert alert-danger">Question failed to update</div>');
+				redirect(changeLink('panel/masterData/question'));
+			}
+		} else {
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'Update Question';
+			$data['content'] = 'panel/masterData/question/update';
+			$data['id'] = $param1;
+			$data['question'] = $this->GeneralModel->get_by_id_general('survei_pertanyaan', 'id_pertanyaan', $param1);
+			$this->load->view('panel/content', $data);
+		}
+	}
+
+	public function deleteQuestion($param1='',$param2='')
+	{
+		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
+		$cekData = $this->GeneralModel->get_by_id_general('survei_pertanyaan', 'id_pertanyaan', $param1);
+		$data = array(
+			'status' => 0,
+			'updated_by' => $this->session->userdata('id_pengguna'),
+			'updated_time' => date('Y-m-d H:i:s')
+		);
+		if ($this->GeneralModel->update_general('survei_pertanyaan', 'id_pertanyaan', $param1, $data) == TRUE) {
+			$this->session->set_flashdata('notif', '<div class="alert alert-success">Question successfully deleted</div>');
+			redirect(changeLink('panel/masterData/question'));
+		} else {
+			$this->session->set_flashdata('notif', '<div class="alert alert-danger">Question failed to delete</div>');
+			redirect(changeLink('panel/masterData/question'));
+		}
+	}
+
 }

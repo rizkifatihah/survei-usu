@@ -47,13 +47,12 @@ class Survey extends CI_Controller
 			$dataSurvey = array(
 				'kategori' => $this->input->post('kategori'),
 				'jumlah_survei' => $this->input->post('jumlah_survei'),
+				'standar_pelayanan' => $this->input->post('standar_pelayanan'),
                 'mulai_survei' => $this->input->post('mulai_survei'),
                 'selesai_survei' => $this->input->post('selesai_survei'),
 				'created_by' => $this->session->userdata('id_pengguna'),
 				'created_time' => date('Y-m-d H:i:s')
 			);
-
-            
 
 			if ($this->GeneralModel->create_general('survei_daftar_survei', $dataSurvey) == TRUE) {
                 $id = $this->db->insert_id();
@@ -78,6 +77,14 @@ class Survey extends CI_Controller
 				$this->session->set_flashdata('notif', '<div class="alert alert-danger">Survey failed to add</div>');
 				redirect(changeLink('panel/survey/listSurvey'));
 			}
+		}elseif($param1 == 'getStandart'){
+            $kategori_unit = $this->input->get('kategori');
+            $getStandart = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$kategori_unit);
+            if ($getStandart) {
+                echo json_encode($getStandart,JSON_PRETTY_PRINT);
+            }else{
+                echo 'false';
+            }
 		} else {
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Add Survey';

@@ -33,13 +33,41 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">Category</label>
                 <div class="col-md-10">
-                    <select class="form-control select2" name="kategori" required>
+                    <select class="form-control select2" name="kategori" id="kategori"  onchange="cariServices(this.value)" required>
                       <option value="">-- Choose Category --</option>
                       <?php foreach($category as $k): ?>
                         <option value="<?php echo $k->nama_kategori; ?>"><?php echo $k->nama_kategori; ?></option>
                       <?php endforeach; ?>
                     </select>
   			       </div>
+              </div>
+            </div>
+            <script>
+                function cariServices(val){
+                  $.ajax({
+                    url:'<?php echo base_url('panel/survey/createSurvey/getStandart');?>',
+                    type:'GET',
+                    data:'kategori='+val,
+                    success:function(resp){
+                      $('#standar_pelayanan').html('<option value="">-- Select Services --</option>');
+                      if (resp!='false') {
+                        var data = JSON.parse(resp)
+                        $.each(data,function(key,val){
+                           $('#standar_pelayanan').append('<option value="'+val.nama_unit_kerja+'">'+val.nama_unit_kerja+'</option>');
+                        });
+                      }
+                    }
+                  })
+                }
+            </script>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Services</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="standar_pelayanan" id="standar_pelayanan" required>
+                        <option value="">-- Select Services --</option>
+                    </select>
+                </div>
               </div>
             </div>
             <div class="col-md-12">

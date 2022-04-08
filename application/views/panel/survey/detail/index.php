@@ -93,7 +93,7 @@
           "data": "kode_survei",
           width: 100,
           render: function(data, type, row, meta) {
-              return '<a href="<?php echo base_url('survei/')?>'+row.kode_survei+'" target="_blank"><?php echo base_url('survei/')?>'+row.kode_survei+'</a>';
+              return '<a href="<?php echo base_url('survei?id=')?>'+row.kode_survei+'" target="_blank"><?php echo base_url('survei?id=')?>'+row.kode_survei+'</a>';
           }
         },
         {

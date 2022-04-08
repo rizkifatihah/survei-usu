@@ -54,6 +54,7 @@
               <tr>
                 <th>No</th>
                 <th>Unit</th>
+                <th>Services</th>
                 <th>Number</th>
                 <th>Start Date</th>
                 <th>End Date</th>
@@ -110,6 +111,10 @@
         },
         {
           "data": "kategori",
+          width: 100,
+        },
+        {
+          "data": "standar_pelayanan",
           width: 100,
         },
         {

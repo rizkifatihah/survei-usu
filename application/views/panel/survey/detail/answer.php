@@ -49,26 +49,47 @@
                     <?php if($p->kategori_jawaban == '1'): ?>
                         <?php $jawaban = $this->db->get_where('survei_jawaban', array('id_pertanyaan' => $p->id_pertanyaan,'id_detail_survei' => $jawaban[0]->id_detail_survei))->result(); ?>
                         <?php foreach($jawaban as $j): ?>
-                            <?php if($j->jawaban == 'Sangat Puas'): ?>
-                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Puas" checked> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Puas" disabled> <label style="font-size:18px;margin-right:13px;">PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak Puas" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Tidak Puas" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>    
-                            <?php elseif($j->jawaban == 'Puas'): ?>
-                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Puas" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Puas" checked> <label style="font-size:18px;margin-right:13px;">PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak Puas" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Tidak Puas" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
-                            <?php elseif($j->jawaban == 'Tidak Puas'): ?>
-                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Puas" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Puas" disabled> <label style="font-size:18px;margin-right:13px;">PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak Puas" checked> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Tidak Puas" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
-                            <?php elseif($j->jawaban == 'Sangat Tidak Puas'): ?>
-                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Puas" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Puas" disabled> <label style="font-size:18px;margin-right:13px;">PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak Puas" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Tidak Puas" checked> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
+                            <!-- <?php if($j->jawaban == '4'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" checked> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" disabled> <label style="font-size:18px;margin-right:13px;">PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>    
+                            <?php elseif($j->jawaban == '3'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" checked> <label style="font-size:18px;margin-right:13px;">PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
+                            <?php elseif($j->jawaban == '2'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" disabled> <label style="font-size:18px;margin-right:13px;">PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" checked> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
+                            <?php elseif($j->jawaban == '1'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" disabled> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" disabled> <label style="font-size:18px;margin-right:13px;">PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" checked> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
+                            <?php endif; ?> -->
+                            <?php if($j->jawaban == '1'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" checked> <label style="font-size:18px;margin-right:13px;">1</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" disabled> <label style="font-size:18px;margin-right:13px;">2</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" disabled> <label style="font-size:18px;margin-right:13px;">3</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" disabled> <label style="font-size:18px;margin-right:13px;">4</label>
+                            <?php elseif($j->jawaban == '2'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" disabled> <label style="font-size:18px;margin-right:13px;">1</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" checked> <label style="font-size:18px;margin-right:13px;">2</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" disabled> <label style="font-size:18px;margin-right:13px;">3</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" disabled> <label style="font-size:18px;margin-right:13px;">4</label>
+                            <?php elseif($j->jawaban == '3'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" disabled> <label style="font-size:18px;margin-right:13px;">1</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" disabled> <label style="font-size:18px;margin-right:13px;">2</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" checked> <label style="font-size:18px;margin-right:13px;">3</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" disabled> <label style="font-size:18px;margin-right:13px;">4</label>
+                            <?php elseif($j->jawaban == '4'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1" disabled> <label style="font-size:18px;margin-right:13px;">1</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2" disabled> <label style="font-size:18px;margin-right:13px;">2</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3" disabled> <label style="font-size:18px;margin-right:13px;">3</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4" checked> <label style="font-size:18px;margin-right:13px;">4</label>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php elseif($p->kategori_jawaban == '2'): ?>

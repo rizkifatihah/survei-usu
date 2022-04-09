@@ -45,10 +45,10 @@
                     <p align="left" style="color:black">JAWABAN :</p> 
                     <div align="left">
                     <?php if($p->kategori_jawaban == '1'): ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Puas"> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Puas"> <label style="font-size:18px;margin-right:13px;">PUAS</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak Puas"> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Tidak Puas"> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:18px;margin-right:13px;">PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2"> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
                     <?php elseif($p->kategori_jawaban == '2'): ?>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:18px;margin-right:13px;">1</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2"> <label style="font-size:18px;margin-right:13px;">2</label>

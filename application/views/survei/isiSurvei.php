@@ -2,6 +2,7 @@
     p {
     margin: 0 1 10px;
 }
+
 </style>
 <!-- begin #content -->
 <div id="content" class="content" style="margin-left: 0px;padding-top:30px">
@@ -39,33 +40,25 @@
                 <div class="row">
                 <div class="col-xs-12">
                 <div class="col-xs-10" style="margin-left:40px;margin-right:30px;">
-                    <p align="left"><?php echo $i; ?>. <?php echo $p->pertanyaan; ?></p>
+                    <p align="left" style="font-size:15px;color:black"><?php echo $i; ?>. <?php echo $p->pertanyaan; ?></p>
                     <input type="hidden" name="id_pertanyaan[]" value="<?php echo $p->id_pertanyaan; ?>">
+                    <p align="left" style="color:black">JAWABAN :</p> 
                     <div align="left">
                     <?php if($p->kategori_jawaban == '1'): ?>
-                        <select class="form-control" name="jawaban[<?php echo $p->id_pertanyaan; ?>]">
-                            <option value="">Pilih Jawaban</option>
-                            <option value="Sangat Puas">Sangat Puas</option>
-                            <option value="Puas">Puas</option>
-                            <option value="Tidak Puas">Tidak Puas</option>
-                            <option value="Sangat Tidak Puas">Sangat Tidak Puas</option>
-                        </select>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Puas"> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Puas"> <label style="font-size:18px;margin-right:13px;">PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak Puas"> <label style="font-size:18px;margin-right:13px;">TIDAK PUAS</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Sangat Tidak Puas"> <label style="font-size:18px;margin-right:13px;">SANGAT TIDAK PUAS</label>
                     <?php elseif($p->kategori_jawaban == '2'): ?>
-                        <select class="form-control" name="jawaban[<?php echo $p->id_pertanyaan; ?>]">
-                            <option value="">Pilih Jawaban</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:18px;margin-right:13px;">1</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2"> <label style="font-size:18px;margin-right:13px;">2</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:18px;margin-right:13px;">3</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:18px;margin-right:13px;">4</label>
                     <?php elseif($p->kategori_jawaban == '3'): ?>
-                        <select class="form-control" name="jawaban[<?php echo $p->id_pertanyaan; ?>]">
-                            <option value="">Pilih Jawaban</option>
-                            <option value="Ya">Ya</option>
-                            <option value="Tidak">Tidak</option>
-                        </select>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:18px;margin-right:13px;">YA</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
                     <?php endif; ?>
-                    <br>
+                    <br><br>
                     </div>
                 </div>
                 </div>
@@ -73,7 +66,7 @@
                 <?php $i++; endforeach; ?>
                 <br />
                 <div class="form-group" align="center">
-                    <button type="submit" class="btn btn-flat btn-primary ">KIRIM JAWABAN</button>
+                    <button type="submit" class="btn btn-flat btn-success ">KIRIM JAWABAN</button>
                     <hr>
                     <br>
                     <small><?php echo $appsProfile->footer; ?></small>

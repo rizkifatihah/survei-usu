@@ -27,24 +27,32 @@ class Survei extends CI_Controller {
 
 	public function createSurvei($param1='')
 	{
-		if ($param1 == 'doCreate') {
-			$id = $this->input->get('id');
-			$dataIsiSurvei = array(
-				'nama_surveyor' => $this->input->post('nama_surveyor'),
-				'email_surveyor' => $this->input->post('email_surveyor'),
-			);
-			$this->session->set_userdata($dataIsiSurvei);
-			redirect('survei/createSurvei?id='.$id);
-		}else{
-			$id = $this->input->get('id');
-			$data['id'] = $id;
+		$id = $this->input->get('id');
+		if($id){
 			$survei = $this->GeneralModel->get_by_id_general('survei_detail_survei','kode_survei',$id);
-			$id_survei = $survei[0]->id_survei;
-			$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
-			$data['survei'] = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
-			$data['appsProfile'] = $this->SettingsModel->get_profile();
-			$data['content'] = 'survei/isiSurvei';
-			$this->load->view('survei/content',$data);
+			if($survei[0]->status == 'Belum Digunakan'){
+				if ($param1 == 'doCreate') {
+					$id = $this->input->get('id');
+					$dataIsiSurvei = array(
+						'nama_surveyor' => $this->input->post('nama_surveyor'),
+						'email_surveyor' => $this->input->post('email_surveyor'),
+					);
+					$this->session->set_userdata($dataIsiSurvei);
+					redirect('survei/createSurvei?id='.$id);
+				}else{
+					$id = $this->input->get('id');
+					$data['id'] = $id;
+					$survei = $this->GeneralModel->get_by_id_general('survei_detail_survei','kode_survei',$id);
+					$id_survei = $survei[0]->id_survei;
+					$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
+					$data['survei'] = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
+					$data['appsProfile'] = $this->SettingsModel->get_profile();
+					$data['content'] = 'survei/isiSurvei';
+					$this->load->view('survei/content',$data);
+				}
+			}else{
+				redirect('survei?id='.$id);
+			}
 		}
 	}
 

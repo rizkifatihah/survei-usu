@@ -103,7 +103,7 @@
             if(row.status == 'Belum Digunakan'){
                 return '<span class="label label-danger">Not Used</span>';
             }else if(row.status == 'Digunakan'){
-                return '<a class="label label-success" href="<?php echo base_url('panel/survei/answerSurvei/')?>'+row.kode_survei+'">Used</a>';
+                return '<a class="label label-success" href="<?php echo base_url('panel/survey/answerSurvei/')?>'+row.id_detail_survei+'">Used</a>';
             }
           }
         }

@@ -158,4 +158,16 @@ class Survey extends CI_Controller
 		}
 	}
 
+	public function answerSurvei($param1='',$param2='')
+	{
+		$data['title'] = $this->title;
+		$data['subtitle'] = 'Answer Survey';
+		$data['content'] = 'panel/survey/detail/answer';
+		$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','id_detail_survei',$param1);
+		$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
+		$data['id'] = $param1;
+		$data['jawaban'] = $this->GeneralModel->get_by_id_general('survei_jawaban','id_detail_survei',$param1);
+		$this->load->view('panel/content', $data);
+	}
+
 }

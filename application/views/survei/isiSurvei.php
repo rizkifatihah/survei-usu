@@ -55,8 +55,8 @@
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:18px;margin-right:13px;">3</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:18px;margin-right:13px;">4</label>
                     <?php elseif($p->kategori_jawaban == '3'): ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:18px;margin-right:13px;">YA</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:18px;margin-right:13px;">YA</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="0"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
                     <?php endif; ?>
                     <br><br>
                     </div>

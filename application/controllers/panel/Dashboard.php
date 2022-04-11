@@ -13,10 +13,20 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
-		$data['title'] = $this->title;
-		$data['subtitle'] = 'Dashboard';
-		$data['content'] = 'panel/dashboard/index';
-		$this->load->view('panel/content', $data);
+		if($this->session->userdata('unit') == ''){
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'Dashboard';
+			$data['daftarSurvei'] = $this->db->query("SELECT * FROM survei_daftar_survei GROUP BY standar_pelayanan")->result();
+			$data['content'] = 'panel/dashboard/index';
+			$this->load->view('panel/content', $data);
+		}else{
+			$data['title'] = $this->title;
+			$data['subtitle'] = 'Dashboard';
+			$unit = $this->session->userdata('unit');
+			$data['daftarSurvei'] = $this->db->query("SELECT * FROM survei_daftar_survei WHERE kategori = '$unit' GROUP BY standar_pelayanan")->result();
+			$data['content'] = 'panel/dashboard/index';
+			$this->load->view('panel/content', $data);
+		}
 	}
 
 	public function timeNow()

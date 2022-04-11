@@ -126,6 +126,17 @@
                   <input type="password" class="form-control" placeholder="Input Password" name="password" required />
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Unit</label>
+                <div class="col-md-10">
+                  <select class="form-control" id="unit" name="unit" required>
+                    <option value="">.:Select Unit:.</option>
+                    <?php foreach ($unit as $key) : ?>
+                      <option value="<?php echo $key->nama_kategori; ?>"><?php echo $key->nama_kategori; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
             </div>
             <hr />
             <div class="form-group">

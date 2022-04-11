@@ -34,6 +34,7 @@ class Auth extends CI_Controller {
 							'email_pengguna' => $key->email_pengguna,
 							'foto_pengguna' => $key->foto_pengguna,
 							'hak_akses' => $key->hak_akses,
+							'unit' => $key->unit,
 							'LoggedIN' => TRUE
 						);
 					}

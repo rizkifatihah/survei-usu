@@ -12,13 +12,22 @@
 	</div>
 	<div class="row">
 		<!-- begin col-3 -->
+		<?php foreach($daftarSurvei as $key):?>
 		<div class="col-md-4 col-sm-4">
 			<div class="widget widget-stats bg-blue">
 				<div class="stats-icon stats-icon-lg"><i class="fa fa-users"></i></div>
-				<div class="stats-title">Number of Projects</div>
-				<div class="stats-number"><a style="cursor:pointer;color:white;"></a></div>
+				<div class="stats-title"><?php echo $key->standar_pelayanan?></div>
+				<div class="stats-number">
+					<a style="cursor:pointer;color:white;" href="<?php echo base_url('panel/report/listReport?service=').$key->standar_pelayanan?>">
+						<?php 
+						$jumlahSurvei = $this->db->query("SELECT COUNT(*) AS jumlah FROM survei_detail_survei WHERE standar_pelayanan = '$key->standar_pelayanan'")->result(); 
+						echo $jumlahSurvei[0]->jumlah;
+						?>
+					</a>
+				</div>
 			</div>
 		</div>
+		<?php endforeach;?>
 		<!-- end col-3 -->
 	</div>
 </div>

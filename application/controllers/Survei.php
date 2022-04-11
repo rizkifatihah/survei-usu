@@ -74,6 +74,7 @@ class Survei extends CI_Controller {
 				'nama_surveyor' => $this->session->userdata('nama_surveyor'),
 				'email_surveyor' => $this->session->userdata('email_surveyor'),
 				'id_detail_survei' => $detailSurvei[0]->id_detail_survei,
+				'id_survei' => $detailSurvei[0]->id_survei,
 				'standar_pelayanan' => $survei[0]->standar_pelayanan,
 				'created_by' => $this->session->userdata('id_pengguna'),
 				'created_time' => date('Y-m-d H:i:s')

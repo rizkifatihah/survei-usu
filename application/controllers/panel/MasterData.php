@@ -57,6 +57,7 @@ class MasterData extends CI_Controller
 				'jenkel' => $this->input->post('jenkel'),
 				'alamat' => $this->input->post('alamat'),
 				'no_hp' => $this->input->post('no_hp'),
+				'unit' => $this->input->post('unit'),
 				'tgl_lahir' => $this->input->post('tgl_lahir'),
 				'created_by' => $this->session->userdata('id_pengguna'),
 			);
@@ -89,7 +90,7 @@ class MasterData extends CI_Controller
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Add User';
 			$data['content'] = 'panel/masterData/pengguna/create';
-			$data['project'] = $this->GeneralModel->get_general('survei_project');
+			$data['unit'] = $this->GeneralModel->get_general('survei_kategori');
 			$data['hakAkses'] = $this->GeneralModel->get_general('survei_hak_akses');
 			$this->load->view('panel/content', $data);
 		}
@@ -106,6 +107,7 @@ class MasterData extends CI_Controller
 				'jenkel' => $this->input->post('jenkel'),
 				'alamat' => $this->input->post('alamat'),
 				'no_hp' => $this->input->post('no_hp'),
+				'unit' => $this->input->post('unit'),
 				'status_pengguna' => $this->input->post('status_pengguna'),
 				'tgl_lahir' => $this->input->post('tgl_lahir'),
 				'updated_by' => $this->session->userdata('id_pengguna'),
@@ -195,6 +197,7 @@ class MasterData extends CI_Controller
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Update User';
 			$data['content'] = 'panel/masterData/pengguna/update';
+			$data['unit'] = $this->GeneralModel->get_general('survei_kategori');
 			$data['hakAkses'] = $this->GeneralModel->get_general('survei_hak_akses');
 			$data['pengguna'] = $this->GeneralModel->get_by_id_general('survei_pengguna','id_pengguna',$param1);
 			$this->load->view('panel/content', $data);

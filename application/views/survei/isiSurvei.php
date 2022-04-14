@@ -10,7 +10,7 @@
   <ol class="breadcrumb pull-right">
   <li><a href="javascript:;">Survei</a></li>
     <li><a href="javascript:;"><?php echo $survei[0]->kategori?></a></li>
-    <li class="active"><?php echo $survei[0]->standar_pelayanan?></li>
+    <li class="active"><?php echo $this->session->userdata('standar_pelayanan')?></li>
 
   </ol>
   <!-- end breadcrumb -->
@@ -31,7 +31,7 @@
         </div>
         <div class="panel-body">
         <div class="row">
-            <h3 align="center" class="text-grey text-light"><b><?php echo $survei[0]->standar_pelayanan; ?></b></h3>
+            <h3 align="center" class="text-grey text-light"><b><?php echo $this->session->userdata('standar_pelayanan')?></b></h3>
             <h4 align="center" class="text-grey text-light"><?php echo $survei[0]->kategori; ?></h4>
             <hr>
             <form method="post" action="<?php echo base_url('survei/submitSurvei?id='.$id); ?>">
@@ -55,8 +55,8 @@
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:18px;margin-right:13px;">3</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:18px;margin-right:13px;">4</label>
                     <?php elseif($p->kategori_jawaban == '3'): ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:18px;margin-right:13px;">YA</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="0"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:18px;margin-right:13px;">YA</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
                     <?php endif; ?>
                     <br><br>
                     </div>

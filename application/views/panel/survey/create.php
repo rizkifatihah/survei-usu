@@ -62,16 +62,6 @@
             </script>
             <div class="col-md-12">
               <div class="form-group">
-                <label class="col-md-2 control-label">Services</label>
-                <div class="col-md-10">
-                    <select class="form-control select2" name="standar_pelayanan" id="standar_pelayanan" required>
-                        <option value="">-- Select Services --</option>
-                    </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
                 <label class="col-md-2 control-label">Number of surveys you want to create</label>
                 <div class="col-md-10">
                   <input type="number" class="form-control" name="jumlah_survei" required>

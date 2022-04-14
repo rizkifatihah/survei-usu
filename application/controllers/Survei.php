@@ -16,6 +16,8 @@ class Survei extends CI_Controller {
 			$data['id'] = $id;
 			$survei = $this->GeneralModel->get_by_id_general('survei_detail_survei','kode_survei',$id);
 			$id_survei = $survei[0]->id_survei;
+			$kategori = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
+			$data['services'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$kategori[0]->kategori);
 			$data['survei'] = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
 			$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','kode_survei',$id);
 			$data['appsProfile'] = $this->SettingsModel->get_profile();
@@ -36,6 +38,7 @@ class Survei extends CI_Controller {
 					$dataIsiSurvei = array(
 						'nama_surveyor' => $this->input->post('nama_surveyor'),
 						'email_surveyor' => $this->input->post('email_surveyor'),
+						'standar_pelayanan' => $this->input->post('standar_pelayanan'),
 					);
 					$this->session->set_userdata($dataIsiSurvei);
 					redirect('survei/createSurvei?id='.$id);
@@ -75,18 +78,21 @@ class Survei extends CI_Controller {
 				'email_surveyor' => $this->session->userdata('email_surveyor'),
 				'id_detail_survei' => $detailSurvei[0]->id_detail_survei,
 				'id_survei' => $detailSurvei[0]->id_survei,
-				'standar_pelayanan' => $survei[0]->standar_pelayanan,
+				'standar_pelayanan' => $this->session->userdata('standar_pelayanan'),
 				'created_by' => $this->session->userdata('id_pengguna'),
 				'created_time' => date('Y-m-d H:i:s')
 			);
 			$this->db->insert('survei_jawaban', $dataJawaban[$i]);
 		}
 		$dataStatusSurvei = array(
-			'status' => 'Digunakan'
+			'status' => 'Digunakan',
+			'standar_pelayanan' => $this->session->userdata('standar_pelayanan'),
+			'updated_time' => date('Y-m-d H:i:s')
 		);
 		$this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei);
 		$this->session->unset_userdata('nama_surveyor');
 		$this->session->unset_userdata('email_surveyor');
+		$this->session->unset_userdata('standar_pelayanan');
 		$this->session->set_flashdata('notif', '<div class="alert alert-success">Terima Kasih Sudah Mengisi Survei</div>');
 		redirect('survei?id='.$id);
 

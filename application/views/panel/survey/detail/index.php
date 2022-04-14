@@ -39,10 +39,32 @@
               <tr>
                 <th>No</th>
                 <th>Link Survey</th>
+                <th>Service</th>
+                <th>Poin</th>
                 <th>Status Survei</th>
               </tr>
             </thead>
             <tbody>
+              <?php $no=1; foreach($detailSurvei as $key):?>
+              <tr>
+                <td> <?php echo $no++; ?> </td>
+                <td> <a href="<?php echo base_url('survei?id=')?><?php echo $key->kode_survei; ?>"><?php echo base_url('survei?id=')?><?php echo $key->kode_survei; ?></a> </td>
+                <td> <?php echo $key->standar_pelayanan; ?> </td>
+                <td>
+                  <?php $totalPoin = $this->db->query("SELECT SUM(jawaban) as total FROM survei_jawaban WHERE id_detail_survei = '$key->id_detail_survei'")->row(); ?>
+                  <?php if($totalPoin){?>
+                    <?php echo $totalPoin->total/32*100; ?>
+                  <?php }?>
+                  
+                <td>
+                <?php if($key->status == 'Belum Digunakan'){?>
+                <span class="label label-danger">Not Used</span>
+                <?php }else if($key->status == 'Digunakan'){?>
+                    <a class="label label-success" href="<?php echo base_url('panel/survey/answerSurvei/')?><?php echo $key->id_detail_survei?>">Used</a>
+                <?php } ?>
+                </td>
+              </tr>
+              <?php endforeach; ?>
             </tbody>
           </table>
           <?php echo $this->session->flashdata('notif'); ?>
@@ -55,59 +77,3 @@
   <!-- end row -->
 </div>
 <!-- end #content -->
-<script type="text/javascript">
-  var table;
-
-  $(document).ready(function() {
-    table = $('#table').DataTable({
-      responsive: {
-        breakpoints: [{
-          name: 'not-desktop',
-          width: Infinity
-        }]
-      },
-      "filter": true,
-      "processing": true, //Feature control the processing indicator.
-      "serverSide": true, //Feature control DataTables' server-side processing mode.
-      "order": [], //Initial no order.
-      "pageLength": 100,
-      "lengthChange": true,
-      // Load data for the table's content from an Ajax source
-      "ajax": {
-        "url": '<?php echo site_url(changeLink('panel/survey/detailSurvey/cari')); ?>',
-        "type": "POST",
-        "data": {
-          "id" : "<?php echo $id; ?>"
-        }
-      },
-      //Set column definition initialisation properties.
-      "columns": [{
-          "data": null,
-          width: 10,
-          "sortable": false,
-          render: function(data, type, row, meta) {
-            return meta.row + meta.settings._iDisplayStart + 1;
-          }
-        },
-        {
-          "data": "kode_survei",
-          width: 100,
-          render: function(data, type, row, meta) {
-              return '<a href="<?php echo base_url('survei?id=')?>'+row.kode_survei+'" target="_blank"><?php echo base_url('survei?id=')?>'+row.kode_survei+'</a>';
-          }
-        },
-        {
-          "data": "status",
-          width: 100,
-          render: function(data, type, row, meta) {
-            if(row.status == 'Belum Digunakan'){
-                return '<span class="label label-danger">Not Used</span>';
-            }else if(row.status == 'Digunakan'){
-                return '<a class="label label-success" href="<?php echo base_url('panel/survey/answerSurvei/')?>'+row.id_detail_survei+'">Used</a>';
-            }
-          }
-        }
-      ],
-    });
-  });
-</script>

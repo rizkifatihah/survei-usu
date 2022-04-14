@@ -73,7 +73,6 @@
 				<div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 form-login" align="center">
 					<img src="<?php echo base_url() . $appsProfile->icon; ?>" class="logo"><br />
 					<h2 align="center" class="text-grey text-light"><br><?php echo $appsProfile->apps_name; ?></h2>
-					<h3 align="center" class="text-grey text-light"><b><?php echo $survei[0]->standar_pelayanan; ?></b></h3>
 					<h4 align="center" class="text-grey text-light"><?php echo $survei[0]->kategori; ?></h4>
 					<?php echo $this->session->flashdata('notif'); ?>
 					<?php if($detailSurvei[0]->status == 'Belum Digunakan') { ?>
@@ -83,10 +82,18 @@
 							<div class="col-lg-3"></div>
 						<div class="col-lg-6 col-xs-12">
 						<div class="form-group">
-								<i class="fa fa-user icon-input"></i> <input type="text" name="nama_surveyor" id="nama_surveyor" class="form-control input-line" placeholder="Fullname" required="true" />
+							<input type="text" name="nama_surveyor" id="nama_surveyor" class="form-control input-line" placeholder="Fullname" required="true" />
 							</div>
 							<div class="form-group">
-							<i class="fa fa-envelope icon-input"></i> <input type="email" name="email_surveyor" id="email_surveyor" class="form-control input-line" placeholder="Email" required="true" />
+							<input type="email" name="email_surveyor" id="email_surveyor" class="form-control input-line" placeholder="Email" required="true" />
+							</div>
+							<div class="form-group">
+								<select class="form-control input-line" name="standar_pelayanan" id="standar_pelayanan" required>
+									<option value="">Select Services</option>
+									<?php foreach($services as $row):?>
+										<option value="<?php echo $row->nama_unit_kerja; ?>"><?php echo $row->nama_unit_kerja; ?></option>
+									<?php endforeach;?>
+								</select>
 							</div>
 							<br />
 						</div>

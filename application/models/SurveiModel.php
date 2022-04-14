@@ -10,27 +10,20 @@ class SurveiModel extends CI_Model {
 
   public function getListSurvei($mulai_survei='',$selesai_survei='',$kategori='',$standar_pelayanan='')
   {
-    $this->datatables->select('*,survei_daftar_survei.id_daftar_survei as id_daftar_survei');
-    $this->datatables->from('survei_daftar_survei');
-    $this->datatables->where("status_survei = '1'");
     if (!empty($kategori)) {
-      $this->datatables->where("kategori = '$kategori'");
+        $this->db->where("kategori='$kategori'");
     }
     if (!empty($standar_pelayanan)) {
-      $this->datatables->where("standar_pelayanan = '$standar_pelayanan'");
+      $this->db->where("standar_pelayanan = '$standar_pelayanan'");
     }
-    if (!empty($mulai_survei)) {
-        $this->datatables->where("DATE_FORMAT(mulai_survei,'%Y-%m-%d') >= '$mulai_survei'");
-      }
-    if (!empty($selesai_survei)) {
-      $this->datatables->where("DATE_FORMAT(selesai_survei,'%Y-%m-%d') <= '$selesai_survei'");
+    if (!empty($start_date)) {
+    $this->db->where("DATE_FORMAT(tgl_absen,'%Y-%m-%d') >= '$start_date'");
     }
-    $this->datatables->add_column(
-      'action',
-      anchor(changeLink('panel/survey/deleteSurvey/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete survey?')")),
-      'id_daftar_survei'
-    );
-    return print_r($this->datatables->generate('json'));
+    if (!empty($end_date)) {
+    $this->db->where("DATE_FORMAT(tgl_absen,'%Y-%m-%d') <= '$end_date'");
+    }
+    $this->datatables->where("status_survei = '1'");
+    return $this->db->get('survei_daftar_survei')->result();
   }
 
   public function getListSurveiByUnit($mulai_survei='',$selesai_survei='',$unit='',$nama_unit_kerja='')
@@ -58,7 +51,7 @@ class SurveiModel extends CI_Model {
 
   public function getDetailListSurvei($id)
   {
-    $this->datatables->select('*,survei_detail_survei.id_survei as id_survei');
+    $this->datatables->select('*,survei_detail_survei.id_detail_survei as id_detail_survei');
     $this->datatables->from('survei_detail_survei');
     $this->datatables->where("survei_detail_survei.id_survei = '$id'");
     return print_r($this->datatables->generate('json'));

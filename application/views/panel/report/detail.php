@@ -31,7 +31,6 @@
           <div class="col-md-12">
               <br>
           </div>
-            <h2><?php echo $report[0]->standar_pelayanan?></h2>
             <a href="<?php echo base_url(changeLink('panel/report/listReport')); ?>" class="btn btn-xs btn-danger">Back</a>
             <br>
             <br>

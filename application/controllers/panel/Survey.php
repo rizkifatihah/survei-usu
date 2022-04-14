@@ -22,11 +22,6 @@ class Survey extends CI_Controller
 	{
 		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
 		if($this->session->userdata('unit') == ''){
-			if($param1=='cari'){
-				$start_date = $this->input->post('dari');			
-				$end_date = $this->input->post('sampai');	
-				return $this->SurveiModel->getListSurvei($start_date,$end_date);	
-			}else{
 				if (!empty($this->input->get('dari')) && !empty($this->input->get('sampai'))) {
 					$data['dari'] = $this->input->get('dari');
 					$data['sampai'] = $this->input->get('sampai');
@@ -35,29 +30,31 @@ class Survey extends CI_Controller
 					$data['sampai'] = "";
 				}
 				$data['title'] = $this->title;
+				$unit = $this->input->get('unit');
+				$start_date = $this->input->get('dari');
+				$end_date = $this->input->get('sampai');
 				$data['subtitle'] = 'List Of Survey';
+				$data['listSurvei'] = $this->SurveiModel->getListSurvei($start_date,$end_date);	
 				$data['content'] = 'panel/survey/index';
 				$this->load->view('panel/content', $data);
-			}
 		}else{
-			if($param1=='cari'){
-				$start_date = $this->input->post('dari');			
-				$end_date = $this->input->post('sampai');
-				$unit = $this->session->userdata('unit');	
-				return $this->SurveiModel->getListSurveiByUnit($start_date,$end_date,$unit);	
-			}else{
 				if (!empty($this->input->get('dari')) && !empty($this->input->get('sampai'))) {
 					$data['dari'] = $this->input->get('dari');
 					$data['sampai'] = $this->input->get('sampai');
+					
 				}else{
 					$data['dari'] = "";
 					$data['sampai'] = "";
 				}
+				$data['unit'] = $this->input->get('unit');
+				$unit = $this->input->get('unit');
+				$start_date = $this->input->get('dari');
+				$end_date = $this->input->get('sampai');
 				$data['title'] = $this->title;
+				$data['listSurvei'] = $this->SurveiModel->getListSurvei($start_date,$end_date,$unit);	
 				$data['subtitle'] = 'List Of Survey';
 				$data['content'] = 'panel/survey/index';
 				$this->load->view('panel/content', $data);
-			}
 		}
 	}
 
@@ -69,7 +66,6 @@ class Survey extends CI_Controller
 				$dataSurvey = array(
 					'kategori' => $this->input->post('kategori'),
 					'jumlah_survei' => $this->input->post('jumlah_survei'),
-					'standar_pelayanan' => $this->input->post('standar_pelayanan'),
 					'mulai_survei' => $this->input->post('mulai_survei'),
 					'selesai_survei' => $this->input->post('selesai_survei'),
 					'created_by' => $this->session->userdata('id_pengguna'),
@@ -220,16 +216,12 @@ class Survey extends CI_Controller
 
 	public function detailSurvey($param1='',$param2='')
 	{
-		if($param1=='cari'){	
-            $id = $this->input->post('id');
-			return $this->SurveiModel->getDetailListSurvei($id);	
-		}else{
 			$data['title'] = $this->title;
             $data['id'] = $param1;
+			$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','id_survei',$param1);
 			$data['subtitle'] = 'List Of Detail Survey';
 			$data['content'] = 'panel/survey/detail/index';
 			$this->load->view('panel/content', $data);
-		}
 	}
 
 	public function answerSurvei($param1='',$param2='')

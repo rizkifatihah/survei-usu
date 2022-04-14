@@ -54,14 +54,39 @@
               <tr>
                 <th>No</th>
                 <th>Unit</th>
-                <th>Services</th>
                 <th>Number</th>
+                <th>Poin</th>
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
+              <?php $no=1; foreach($listSurvei as $row):?>
+                <tr>
+                  <td><?php echo $no?>
+                  <td><?php echo $row->kategori; ?></td>
+                  <td><?php echo $row->jumlah_survei; ?></td>
+                  <td>
+                    <?php
+                      $getDataUsed = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$row->id_daftar_survei' AND status='Digunakan'")->row();
+                      $poin = $this->db->query("SELECT SUM(jawaban) as poin FROM survei_jawaban WHERE id_survei = '$row->id_daftar_survei'")->row();
+                      if($poin->poin != 0){
+                      echo ($poin->poin/32*100)/$getDataUsed->hitung;
+                      }else{
+                        echo 0;
+                      }
+                      
+                    ?>
+                  </td>
+                  <td><?php echo $row->mulai_survei; ?></td>
+                  <td><?php echo $row->selesai_survei; ?></td>
+                  <td>
+                    <a href="<?php echo base_url(changeLink('panel/survey/detailSurvey/'.$row->id_daftar_survei)); ?>" class="btn btn-xs btn-primary">Detail</a>
+                    <a href="<?php echo base_url(changeLink('panel/survey/deleteSurvey/'.$row->id_daftar_survei)); ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                  </td>
+                </tr>
+              <?php $no++; endforeach; ?>
             </tbody>
           </table>
           <?php echo $this->session->flashdata('notif'); ?>
@@ -74,7 +99,7 @@
   <!-- end row -->
 </div>
 <!-- end #content -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   var table;
 
   $(document).ready(function() {
@@ -114,10 +139,6 @@
           width: 100,
         },
         {
-          "data": "standar_pelayanan",
-          width: 100,
-        },
-        {
           "data": "jumlah_survei",
           width: 100,
         },
@@ -139,4 +160,4 @@
       ],
     });
   });
-</script>
+</script> -->

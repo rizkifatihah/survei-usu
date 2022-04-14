@@ -35,6 +35,7 @@
             <div class="col-xs-10">
             <p align="left" style="font-size:15px;color:black">NAME : <?php echo $jawaban[0]->nama_surveyor; ?></p>
             <p align="left" style="font-size:15px;color:black">EMAIL : <?php echo $jawaban[0]->email_surveyor; ?></p>
+            <p align="left" style="font-size:15px;color:black">STANDAR PELAYANAN : <?php echo $jawaban[0]->standar_pelayanan; ?></p>
             <hr>
             </div>
             </div>

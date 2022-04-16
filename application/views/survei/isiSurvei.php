@@ -2,6 +2,9 @@
     p {
     margin: 0 1 10px;
 }
+td {
+  text-align: left;
+}
 
 </style>
 <!-- begin #content -->
@@ -16,12 +19,14 @@
   <!-- end breadcrumb -->
   <!-- begin page-header -->
   <h1 class="page-header"></h1>
+  <br><br>
   <!-- end page-header -->
-
   <!-- begin row -->
   <div class="row">
-    <!-- begin col-12 -->
     <div class="col-md-12">
+    <div class="col-md-2"></div>
+    <!-- begin col-12 -->
+    <div class="col-md-8">
       <!-- begin panel -->
       <div class="panel panel-inverse">
         <div class="panel-heading">
@@ -36,14 +41,43 @@
             <hr>
             <form method="post" action="<?php echo base_url('survei/submitSurvei?id='.$id); ?>">
             <div class="form-group">
+                <div class="row">
+                <div class="col-xs-12">
+                <div class="col-xs-10" style="margin-left:40px;margin-right:30px;">
+                <table style="width: 100%;">
+                  <tr>
+                    <td>
+                    <p style="color:black;font-size:18px;">Hal Apa yang anda lakukan pada pelayanan tersebut ?</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" class="form-control" name="information" required>
+                    </td>
+                  </tr>
+                </table>
+                </div>
+                </div>
+                </div>
+            </div>
                 <?php $i=1; foreach($pertanyaan as $p):?>
                 <div class="row">
                 <div class="col-xs-12">
                 <div class="col-xs-10" style="margin-left:40px;margin-right:30px;">
-                    <p align="left" style="font-size:15px;color:black"><?php echo $i; ?>. <?php echo $p->pertanyaan; ?></p>
-                    <input type="hidden" name="id_pertanyaan[]" value="<?php echo $p->id_pertanyaan; ?>">
-                    <p align="left" style="color:black">JAWABAN :</p> 
-                    <div align="left">
+                <table>
+                  <tr>
+                    <td valign="top">
+                    <p style="color:black;font-size:18px;"><?php echo $i; ?>. &nbsp;</p>
+                    </td>
+                    <td valign="top">
+                    <p style="color:black;font-size:18px;"><?php echo $p->pertanyaan; ?>
+                      <input type="hidden" name="id_pertanyaan[]" value="<?php echo $p->id_pertanyaan; ?>">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                    <p style="color:black;font-size:18px;">Jawaban : </p>
                     <?php if($p->kategori_jawaban == '1'): ?>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:18px;margin-right:13px;">SANGAT PUAS</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:18px;margin-right:13px;">PUAS</label>
@@ -58,8 +92,9 @@
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:18px;margin-right:13px;">YA</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
                     <?php endif; ?>
-                    <br><br>
-                    </div>
+                    </td>
+                  </tr>
+                </table>
                 </div>
                 </div>
                 </div>
@@ -79,6 +114,8 @@
       <!-- end panel -->
     </div>
     <!-- end col-12 -->
+    <div class="col-md-2"></div>
+    </div>
   </div>
   <!-- end row -->
 </div>

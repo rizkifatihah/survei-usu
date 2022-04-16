@@ -16,14 +16,14 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('unit') == ''){
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Dashboard';
-			$data['daftarSurvei'] = $this->db->query("SELECT * FROM survei_daftar_survei GROUP BY standar_pelayanan")->result();
+			$data['daftarSurvei'] = $this->db->query("SELECT * FROM survei_daftar_survei GROUP BY kategori")->result();
 			$data['content'] = 'panel/dashboard/index';
 			$this->load->view('panel/content', $data);
 		}else{
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Dashboard';
 			$unit = $this->session->userdata('unit');
-			$data['daftarSurvei'] = $this->db->query("SELECT * FROM survei_daftar_survei WHERE kategori = '$unit' GROUP BY standar_pelayanan")->result();
+			$data['daftarSurvei'] = $this->db->query("SELECT * FROM survei_daftar_survei WHERE kategori = '$unit' GROUP BY kategori")->result();
 			$data['content'] = 'panel/dashboard/index';
 			$this->load->view('panel/content', $data);
 		}

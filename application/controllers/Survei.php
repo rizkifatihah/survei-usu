@@ -66,6 +66,7 @@ class Survei extends CI_Controller {
 		$survei = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$detailSurvei[0]->id_survei);
 		$question = $this->input->post('id_pertanyaan'); 
 		$answer = $this->input->post('jawaban'); 
+		$information = $this->input->post('information');
 		$data = array();
 		$jumlahPertanyaan = count($question);
 		$index = 0; 
@@ -87,6 +88,7 @@ class Survei extends CI_Controller {
 		$dataStatusSurvei = array(
 			'status' => 'Digunakan',
 			'standar_pelayanan' => $this->session->userdata('standar_pelayanan'),
+			'information' => $information,
 			'updated_time' => date('Y-m-d H:i:s')
 		);
 		$this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei);

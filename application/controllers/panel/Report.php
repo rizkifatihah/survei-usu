@@ -26,8 +26,7 @@ class Report extends CI_Controller
 				$start_date = $this->input->post('dari');			
 				$end_date = $this->input->post('sampai');
 				$unit = $this->input->post('unit');
-				$service = $this->input->post('service');
-				return $this->SurveiModel->getListSurvei($start_date,$end_date,$unit,$service);	
+				return $this->SurveiModel->getListSurvei($start_date,$end_date,$unit);	
 			}elseif($param1 == 'getService'){
 				$kategori_unit = $this->input->get('kategori_unit');
 				$getService = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$kategori_unit);
@@ -47,7 +46,6 @@ class Report extends CI_Controller
 				$data['title'] = $this->title;
 				$data['subtitle'] = 'List Of Report';
 				$data['unit'] = $this->input->get('unit');
-				$data['service'] = $this->input->get('service');
 				$data['unitAll'] = $this->GeneralModel->get_general('survei_kategori');
 				$data['content'] = 'panel/report/index';
 				$this->load->view('panel/content', $data);
@@ -57,8 +55,7 @@ class Report extends CI_Controller
 				$start_date = $this->input->post('dari');			
 				$end_date = $this->input->post('sampai');
 				$unit = $this->session->userdata('unit');	
-				$service = $this->input->post('service');
-				return $this->SurveiModel->getListSurveiByUnit($start_date,$end_date,$unit,$service);	
+				return $this->SurveiModel->getListSurveiByUnit($start_date,$end_date,$unit);	
 			}else{
 				if (!empty($this->input->get('dari')) && !empty($this->input->get('sampai'))) {
 					$data['dari'] = $this->input->get('dari');
@@ -67,7 +64,6 @@ class Report extends CI_Controller
 					$data['dari'] = "";
 					$data['sampai'] = "";
 				}
-				$data['service'] = $this->input->get('service');
 				$data['title'] = $this->title;
 				$data['services'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$this->session->userdata('unit'));
 				$data['subtitle'] = 'List Of Report';

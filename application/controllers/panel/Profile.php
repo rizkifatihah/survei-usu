@@ -68,7 +68,6 @@ class Profile extends CI_Controller {
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Edit Profile';
 			$data['content'] = 'panel/profile/updatePengguna';
-			$data['project'] = $this->GeneralModel->get_general('survei_project');
 			$data['pengguna'] = $this->GeneralModel->get_by_id_general('survei_pengguna','id_pengguna',$this->session->userdata('id_pengguna'));
 			$this->load->view('panel/content',$data);
 		}

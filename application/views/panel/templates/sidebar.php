@@ -16,7 +16,7 @@
         </div>
         <div class="info">
           <?php echo $this->session->userdata('nama_lengkap'); ?>
-          <small style="color:white"><?php echo $this->session->userdata('hak_akses');?> | <a href="<?php echo base_url(changeLink('panel/profile/edit'));?>" style="color:white;text-decoration: none;">edit profile</a></small>
+          <small style="color:white"><?php echo $this->session->userdata('hak_akses');?> | <a href="<?php echo base_url(changeLink('panel/profile/edit'));?>" style="color:white;text-decoration: none;">profile</a></small>
         </div>
       </li>
     </ul>

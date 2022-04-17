@@ -36,7 +36,6 @@
             <p align="left" style="font-size:15px;color:black">NAME : <?php echo $jawaban[0]->nama_surveyor; ?></p>
             <p align="left" style="font-size:15px;color:black">EMAIL : <?php echo $jawaban[0]->email_surveyor; ?></p>
             <p align="left" style="font-size:15px;color:black">STANDAR PELAYANAN : <?php echo $jawaban[0]->standar_pelayanan; ?></p>
-            <p align="left" style="font-size:15px;color:black">TAMBAHAN INFORMASI : <?php echo $detailSurvei[0]->information; ?></p>
             <hr>
             </div>
             </div>
@@ -129,6 +128,12 @@
                                 <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA" disabled> <label style="font-size:18px;margin-right:13px;">YA</label>
                             <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK" checked> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
                             <?php endif; ?>
+                            <br>
+                            <?php if($p->id_pertanyaan == '9'){?>
+                                <?if($j->jawaban == 'YA'){?>
+                                <input type="text"  value="<?php echo $j->tambahan_keterangan; ?>" class="form-control" style="width:100%;margin-top:10px;" readonly>
+                                <?}?>
+                            <?php } ?>
                             <?php endforeach; ?>
                     <?php endif; ?>
                     <br><br>

@@ -99,7 +99,7 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">Alamat</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" placeholder="Input Address" value="<?php echo $pengguna[0]->alamat; ?>" name="alamat" required />
+                  <input type="text" class="form-control" placeholder="Input Address" value="<?php echo $pengguna[0]->alamat; ?>" name="alamat"  />
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">Phone Number</label>
                 <div class="col-md-10">
-                  <input type="text" class="form-control" placeholder="Input Phone Number" onkeypress="onlyNumberKey(event)" value="<?php echo $pengguna[0]->no_hp; ?>" name="no_hp" required />
+                  <input type="text" class="form-control" placeholder="Input Phone Number" onkeypress="onlyNumberKey(event)" value="<?php echo $pengguna[0]->no_hp; ?>" name="no_hp" />
                 </div>
               </div>
               <div class="form-group">

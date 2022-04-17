@@ -13,17 +13,33 @@
 	<div class="row">
 		<!-- begin col-3 -->
 		<?php foreach($daftarSurvei as $key):?>
+		<?php $getData = $this->GeneralModel->get_by_id_general('survei_daftar_survei', 'id_daftar_survei', $key->id_daftar_survei); ?>
+		<?php foreach($getData as $key2):?>
+		<?php $getDataUsed = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$key2->id_daftar_survei' AND status='Digunakan'")->row();?>
+		<?php $getJumlah = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$key2->id_daftar_survei'")->row();?>
+		<?php
+			$poin = $this->db->query("SELECT SUM(jawaban) as poin FROM survei_jawaban WHERE id_survei = '$key2->id_daftar_survei'")->row();
+		?>
+		<a href="<?php echo base_url('panel/survey/detailSurvey/')?><?php echo $key2->id_daftar_survei?>">
 		<div class="col-md-4 col-sm-4">
 			<div class="widget widget-stats bg-blue">
 				<div class="stats-icon stats-icon-lg"><i class="fa fa-users"></i></div>
-				<div class="stats-title"><?php echo $key->kategori?></div>
+				<div class="stats-title"><?php echo $key->kategori?><br>( <?php echo tgl_indo($key2->mulai_survei)?> - <?php echo tgl_indo($key2->selesai_survei)?>)</div>
 				<div class="stats-number">
-					<a style="cursor:pointer;color:white;" href="<?php echo base_url('panel/report/listReport?service=')?>">
-						
-					</a>
+					<label style="color:white">Jumlah Survei : <?php echo $getDataUsed->hitung .'/'. $getJumlah->hitung; ?></label><br>
+					<label style="color:white">Poin : 
+					<?php  if($poin->poin != 0){
+                      echo ($poin->poin/32*100)/$getDataUsed->hitung;
+                      }else{
+                        echo 0;
+                      }
+					?>
+				</label>
 				</div>
 			</div>
 		</div>
+		</a>
+		<?php endforeach; ?>
 		<?php endforeach;?>
 		<!-- end col-3 -->
 	</div>

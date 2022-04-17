@@ -29,12 +29,18 @@ class Survey extends CI_Controller
 					$data['dari'] = "";
 					$data['sampai'] = "";
 				}
+				if(!empty($this->input->get('unit'))){
+					$data['unit'] = $this->input->get('unit');
+				}else{
+					$data['unit'] = "";
+				}
+				$unit = $data['unit'];
 				$data['title'] = $this->title;
-				$unit = $this->input->get('unit');
 				$start_date = $this->input->get('dari');
 				$end_date = $this->input->get('sampai');
 				$data['subtitle'] = 'List Of Survey';
-				$data['listSurvei'] = $this->SurveiModel->getListSurvei($start_date,$end_date);	
+				$data['unitAll'] = $this->GeneralModel->get_general('survei_kategori');
+				$data['listSurvei'] = $this->SurveiModel->getListSurvei($start_date,$end_date,$unit);	
 				$data['content'] = 'panel/survey/index';
 				$this->load->view('panel/content', $data);
 		}else{
@@ -46,13 +52,19 @@ class Survey extends CI_Controller
 					$data['dari'] = "";
 					$data['sampai'] = "";
 				}
-				$data['unit'] = $this->input->get('unit');
-				$unit = $this->input->get('unit');
+				if(!empty($this->input->get('unit'))){
+					$data['unit'] = $this->input->get('unit');
+				}else{
+					$data['unit'] = $this->session->userdata('unit');
+				}
 				$start_date = $this->input->get('dari');
 				$end_date = $this->input->get('sampai');
 				$data['title'] = $this->title;
+				$unit = $data['unit'];
 				$data['listSurvei'] = $this->SurveiModel->getListSurvei($start_date,$end_date,$unit);	
 				$data['subtitle'] = 'List Of Survey';
+				$data['unit'] = $this->input->get('unit');
+				$data['unitAll'] = $this->GeneralModel->get_by_id_general('survei_kategori','nama_kategori',$unit);
 				$data['content'] = 'panel/survey/index';
 				$this->load->view('panel/content', $data);
 		}

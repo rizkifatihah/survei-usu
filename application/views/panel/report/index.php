@@ -133,7 +133,6 @@
           "dari": "<?php echo $dari; ?>",
           "sampai": "<?php echo $sampai; ?>",
           "unit": "<?php echo $unit; ?>",
-          "service": "<?php echo $service; ?>"
         }
       },
       //Set column definition initialisation properties.

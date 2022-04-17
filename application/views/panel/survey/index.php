@@ -29,6 +29,15 @@
         <div class="panel-body">
           <?php echo $this->session->flashdata('notif'); ?>
           <form action="<?php echo base_url('panel/survey/listSurvey'); ?>" class="form-horizontal" method="GET">
+            <div class="col-md-12">
+              <label for="">Unit</label>
+              <select name="unit" class="form-control select2" id="unit">
+                <option value="">-- Select Unit --</option>
+                <?php foreach ($unitAll as $key) { ?>
+                  <option value="<?php echo $key->nama_kategori; ?>" <?php if($this->input->get('unit') == $key->nama_kategori) { echo 'selected'; } ?>><?php echo $key->nama_kategori; ?></option>
+                <?php } ?>
+              </select>
+            </div>
             <div class="col-md-4">
                 <label for="">Start Date</label>
               <input type="date" class="form-control" name="dari" value="<?php echo $dari; ?>">
@@ -43,13 +52,11 @@
             </div>
           </form>
           <div class="col-md-12">
-              <br>
-          </div>
           <a href="<?php echo base_url(changeLink('panel/survey/createSurvey')); ?>" class="btn btn-xs btn-primary pull-right">Add Survey</a>
           <br />
           <br />
-          <br />
-          <table id="table" class="table table-striped table-bordered" width="100%">
+          </div>
+          <table class="table table-striped table-bordered dataex-html5-selectors">
             <thead>
               <tr>
                 <th>No</th>
@@ -66,7 +73,10 @@
                 <tr>
                   <td><?php echo $no?>
                   <td><?php echo $row->kategori; ?></td>
-                  <td><?php echo $row->jumlah_survei; ?></td>
+                  <td>
+                    <?php $getDataUsed = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$row->id_daftar_survei' AND status='Digunakan'")->row();?>
+                    <?php echo $getDataUsed->hitung .'/'. $row->jumlah_survei; ?>
+                  </td>
                   <td>
                     <?php
                       $getDataUsed = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$row->id_daftar_survei' AND status='Digunakan'")->row();
@@ -79,8 +89,8 @@
                       
                     ?>
                   </td>
-                  <td><?php echo $row->mulai_survei; ?></td>
-                  <td><?php echo $row->selesai_survei; ?></td>
+                  <td><?php echo tgl_indo($row->mulai_survei); ?></td>
+                  <td><?php echo tgl_indo($row->selesai_survei); ?></td>
                   <td>
                     <a href="<?php echo base_url(changeLink('panel/survey/detailSurvey/'.$row->id_daftar_survei)); ?>" class="btn btn-xs btn-primary">Detail</a>
                     <a href="<?php echo base_url(changeLink('panel/survey/deleteSurvey/'.$row->id_daftar_survei)); ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
@@ -89,7 +99,6 @@
               <?php $no++; endforeach; ?>
             </tbody>
           </table>
-          <?php echo $this->session->flashdata('notif'); ?>
         </div>
       </div>
       <!-- end panel -->
@@ -99,65 +108,34 @@
   <!-- end row -->
 </div>
 <!-- end #content -->
-<!-- <script type="text/javascript">
-  var table;
 
-  $(document).ready(function() {
-    table = $('#table').DataTable({
-      responsive: {
-        breakpoints: [{
-          name: 'not-desktop',
-          width: Infinity
-        }]
-      },
-      "filter": true,
-      "processing": true, //Feature control the processing indicator.
-      "serverSide": true, //Feature control DataTables' server-side processing mode.
-      "order": [], //Initial no order.
-      "pageLength": 100,
-      "lengthChange": true,
-      // Load data for the table's content from an Ajax source
-      "ajax": {
-        "url": '<?php echo site_url(changeLink('panel/survey/listSurvey/cari')); ?>',
-        "type": "POST",
-        "data": {
-          "dari": "<?php echo $dari; ?>",
-          "sampai": "<?php echo $sampai; ?>"
-        }
-      },
-      //Set column definition initialisation properties.
-      "columns": [{
-          "data": null,
-          width: 10,
-          "sortable": false,
-          render: function(data, type, row, meta) {
-            return meta.row + meta.settings._iDisplayStart + 1;
-          }
-        },
-        {
-          "data": "kategori",
-          width: 100,
-        },
-        {
-          "data": "jumlah_survei",
-          width: 100,
-        },
-        {
-          "data": "mulai_survei",
-          width: 100,
-        },
-        {
-          "data": "selesai_survei",
-          width: 100,
-        },
-        {
-          "data": "action",
-          width: 100,
-          render: function(data, type, row, meta) {
-            return '<a href="<?php echo base_url(changeLink("panel/survey/detailSurvey/")); ?>' + row.id_daftar_survei + '" class="btn btn-xs btn-primary" style="margin-top:5px;margin-right:3px;"><i class="fa fa-info-circle"></i> '+row.action;
-          }
-        }
-      ],
-    });
-  });
-</script> -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.dataex-html5-selectors').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+          {
+              extend: 'excelHtml5',
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          {
+              extend: 'csvHtml5',
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          {
+                extend: 'pdfHtml5',
+                download:'open',
+                exportOptions: {
+                    columns: ':visible'
+                }
+          },
+          'colvis',
+        ]
+    } );
+    $('.pagination').addClass('pull-right')
+} );
+</script>

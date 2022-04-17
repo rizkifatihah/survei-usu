@@ -13,8 +13,6 @@ td {
   <ol class="breadcrumb pull-right">
   <li><a href="javascript:;">Survei</a></li>
     <li><a href="javascript:;"><?php echo $survei[0]->kategori?></a></li>
-    <li class="active"><?php echo $this->session->userdata('standar_pelayanan')?></li>
-
   </ol>
   <!-- end breadcrumb -->
   <!-- begin page-header -->
@@ -47,12 +45,17 @@ td {
                 <table style="width: 100%;">
                   <tr>
                     <td>
-                    <p style="color:black;font-size:18px;">Hal Apa yang anda lakukan pada pelayanan tersebut ?</p>
+                    <p style="color:black;font-size:18px;">Pelayanan apa yang anda lakukan?</p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <input type="text" class="form-control" name="information" required>
+                      <select class="form-control input-line" name="standar_pelayanan" id="standar_pelayanan" required>
+                        <option value="">Pilih Pelayanan</option>
+                        <?php foreach($services as $row):?>
+                          <option value="<?php echo $row->nama_unit_kerja; ?>"><?php echo $row->nama_unit_kerja; ?></option>
+                        <?php endforeach;?>
+                      </select>
                     </td>
                   </tr>
                 </table>
@@ -89,9 +92,26 @@ td {
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:18px;margin-right:13px;">3</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:18px;margin-right:13px;">4</label>
                     <?php elseif($p->kategori_jawaban == '3'): ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:18px;margin-right:13px;">YA</label>
+                        <?php if($i == '9'){ ?>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" id="jawabanYa" value="YA"> <label style="font-size:18px;margin-right:13px;" >YA</label>
+                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" id="jawabanTidak" value="TIDAK"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
+                        <br>
+                        <input type="text" class="form-control" name="keterangan_tambahan[<?php echo $p->id_pertanyaan; ?>]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;">
+                        <br>
+                        <script>
+                            $('#jawabanYa').click(function(){
+                                $('#keterangan_tambahan').show();
+                            });
+                            $('#jawabanTidak').click(function(){
+                                $('#keterangan_tambahan').hide();
+                            });
+                        </script>
+                        <?php }else{ ?>
+                          <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:18px;margin-right:13px;">YA</label>
                         <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK"> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
-                    <?php endif; ?>
+                        <br>
+                        <?php } ?>
+                        <?php endif; ?>
                     </td>
                   </tr>
                 </table>

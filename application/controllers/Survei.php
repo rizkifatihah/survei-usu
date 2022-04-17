@@ -17,7 +17,6 @@ class Survei extends CI_Controller {
 			$survei = $this->GeneralModel->get_by_id_general('survei_detail_survei','kode_survei',$id);
 			$id_survei = $survei[0]->id_survei;
 			$kategori = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
-			$data['services'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$kategori[0]->kategori);
 			$data['survei'] = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
 			$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','kode_survei',$id);
 			$data['appsProfile'] = $this->SettingsModel->get_profile();
@@ -38,7 +37,6 @@ class Survei extends CI_Controller {
 					$dataIsiSurvei = array(
 						'nama_surveyor' => $this->input->post('nama_surveyor'),
 						'email_surveyor' => $this->input->post('email_surveyor'),
-						'standar_pelayanan' => $this->input->post('standar_pelayanan'),
 					);
 					$this->session->set_userdata($dataIsiSurvei);
 					redirect('survei/createSurvei?id='.$id);
@@ -49,6 +47,8 @@ class Survei extends CI_Controller {
 					$id_survei = $survei[0]->id_survei;
 					$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
 					$data['survei'] = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
+					$survei1= $data['survei'];
+					$data['services'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$survei1[0]->kategori);
 					$data['appsProfile'] = $this->SettingsModel->get_profile();
 					$data['content'] = 'survei/isiSurvei';
 					$this->load->view('survei/content',$data);
@@ -66,7 +66,7 @@ class Survei extends CI_Controller {
 		$survei = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$detailSurvei[0]->id_survei);
 		$question = $this->input->post('id_pertanyaan'); 
 		$answer = $this->input->post('jawaban'); 
-		$information = $this->input->post('information');
+		$keterangan_tambahan = $this->input->post('keterangan_tambahan');
 		$data = array();
 		$jumlahPertanyaan = count($question);
 		$index = 0; 
@@ -79,16 +79,21 @@ class Survei extends CI_Controller {
 				'email_surveyor' => $this->session->userdata('email_surveyor'),
 				'id_detail_survei' => $detailSurvei[0]->id_detail_survei,
 				'id_survei' => $detailSurvei[0]->id_survei,
-				'standar_pelayanan' => $this->session->userdata('standar_pelayanan'),
+				'standar_pelayanan' => $this->input->post('standar_pelayanan'),
 				'created_by' => $this->session->userdata('id_pengguna'),
 				'created_time' => date('Y-m-d H:i:s')
 			);
+			if($i == 8){
+				$dataJawaban[$i] += array(
+					'tambahan_keterangan' => $keterangan_tambahan[9]
+				);
+			}
 			$this->db->insert('survei_jawaban', $dataJawaban[$i]);
 		}
+
 		$dataStatusSurvei = array(
 			'status' => 'Digunakan',
-			'standar_pelayanan' => $this->session->userdata('standar_pelayanan'),
-			'information' => $information,
+			'standar_pelayanan' => $this->input->post('standar_pelayanan'),
 			'updated_time' => date('Y-m-d H:i:s')
 		);
 		$this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei);

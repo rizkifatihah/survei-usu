@@ -47,7 +47,8 @@
 	<style type="text/css">
 		.login-page .form-box .univ-identity-box {
 			background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('<?php echo base_url() . $appsProfile->sidebar_login; ?>') bottom;
-			background-size: cover;
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
 		}
 	</style>
 	<style type="text/css">

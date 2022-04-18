@@ -438,6 +438,7 @@ class MasterData extends CI_Controller
 		if ($param1 == 'doCreate') {
 			$nama_unit_kerja = $this->input->post('nama_unit_kerja');
 			$kategori_unit = $this->input->post('kategori_unit');
+
 			$dataService = array(
 				'nama_unit_kerja' => strtoupper($nama_unit_kerja),
 				'kategori_unit' => $kategori_unit,

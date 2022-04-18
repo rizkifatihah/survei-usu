@@ -33,7 +33,7 @@
             <br />
             <div class="row">
             <div class="col-xs-10">
-            <p align="left" style="font-size:15px;color:black">NAME : <?php echo $jawaban[0]->nama_surveyor; ?></p>
+            <p align="left" style="font-size:15px;color:black">NAMA : <?php echo $jawaban[0]->nama_surveyor; ?></p>
             <p align="left" style="font-size:15px;color:black">EMAIL : <?php echo $jawaban[0]->email_surveyor; ?></p>
             <p align="left" style="font-size:15px;color:black">STANDAR PELAYANAN : <?php echo $jawaban[0]->standar_pelayanan; ?></p>
             <hr>
@@ -45,7 +45,7 @@
                 <div class="col-xs-10">
                     <p align="left" style="font-size:15px;color:black"><?php echo $i; ?>. <?php echo $p->pertanyaan; ?></p>
                     <input type="hidden" name="id_pertanyaan[]" value="<?php echo $p->id_pertanyaan; ?>">
-                    <p align="left" style="color:black">JAWABAN :</p> 
+                    <p align="left" style="color:black">Jawaban :</p> 
                     <div align="left">
                     <?php if($p->kategori_jawaban == '1'): ?>
                         <?php $jawaban = $this->db->get_where('survei_jawaban', array('id_pertanyaan' => $p->id_pertanyaan,'id_detail_survei' => $jawaban[0]->id_detail_survei))->result(); ?>

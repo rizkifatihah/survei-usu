@@ -50,7 +50,7 @@ td {
                   </tr>
                   <tr>
                     <td>
-                      <select class="form-control input-line" name="standar_pelayanan" id="standar_pelayanan" required>
+                      <select class="form-control input-line select2" name="standar_pelayanan" id="standar_pelayanan" required>
                         <option value="">Pilih Pelayanan</option>
                         <?php foreach($services as $row):?>
                           <option value="<?php echo $row->nama_unit_kerja; ?>"><?php echo $row->nama_unit_kerja; ?></option>

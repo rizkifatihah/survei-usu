@@ -53,14 +53,15 @@
                 <td>
                   <?php $totalPoin = $this->db->query("SELECT SUM(jawaban) as total FROM survei_jawaban WHERE id_detail_survei = '$key->id_detail_survei'")->row(); ?>
                   <?php if($totalPoin){?>
-                    <?php echo $totalPoin->total/32*100; ?>
+                    <?php echo $totalPoin->total/8; ?>
                   <?php }?>
                   
                 <td>
                 <?php if($key->status == 'Belum Digunakan'){?>
                 <span class="label label-danger">Not Used</span>
                 <?php }else if($key->status == 'Digunakan'){?>
-                    <a class="label label-success" href="<?php echo base_url('panel/survey/answerSurvei/')?><?php echo $key->id_detail_survei?>">Used</a>
+                    <a class="label label-success" href="<?php echo base_url('panel/survey/answerSurvei/')?><?php echo $key->id_detail_survei?>">Used | Detail</a>
+                    <a class="label label-primary" href="<?php echo base_url(changeLink('panel/survey/answerSurvei/excel/')); ?><?php echo $key->id_detail_survei?>">Download</a>
                 <?php } ?>
                 </td>
               </tr>

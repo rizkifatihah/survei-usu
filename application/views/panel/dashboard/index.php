@@ -29,7 +29,11 @@
 					<label style="color:white">Jumlah Survei : <?php echo $getDataUsed->hitung .'/'. $getJumlah->hitung; ?></label><br>
 					<label style="color:white">Poin : 
 					<?php  if($poin->poin != 0){
-                      echo ($poin->poin/32*100)/$getDataUsed->hitung;
+					  $PoinTotal = $poin->poin;
+					  $jumlahBagi = 8;
+					  $poinSementara = $PoinTotal/$jumlahBagi;
+					  $jumlahData = (int)$getDataUsed->hitung;
+					  echo $poinSementara/$jumlahData;
                       }else{
                         echo 0;
                       }

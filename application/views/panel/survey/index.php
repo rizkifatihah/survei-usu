@@ -82,7 +82,7 @@
                       $getDataUsed = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$row->id_daftar_survei' AND status='Digunakan'")->row();
                       $poin = $this->db->query("SELECT SUM(jawaban) as poin FROM survei_jawaban WHERE id_survei = '$row->id_daftar_survei'")->row();
                       if($poin->poin != 0){
-                      echo ($poin->poin/32*100)/$getDataUsed->hitung;
+                      echo ($poin->poin/8)/$getDataUsed->hitung;
                       }else{
                         echo 0;
                       }

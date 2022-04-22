@@ -35,7 +35,7 @@
           <a href="<?php echo base_url(changeLink('panel/survey/answerSurvei/excelAll/')); ?><?php echo $id?>" class="btn btn-xs btn-success">Download</a>
             <br />
             <br />
-          <table id="table" class="table table-striped table-bordered" width="100%">
+          <table id="table" class="table table-striped table-bordered dataex-html5-selectors" width="100%">
             <thead>
               <tr>
                 <th>No</th>
@@ -79,3 +79,39 @@
   <!-- end row -->
 </div>
 <!-- end #content -->
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.dataex-html5-selectors').DataTable( {
+      responsive: {
+        breakpoints: [{
+          name: 'not-desktop',
+          width: Infinity
+        }]
+      },
+        dom: 'Bfrtip',
+        buttons: [
+          {
+              extend: 'excelHtml5',
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          {
+              extend: 'csvHtml5',
+              exportOptions: {
+                  columns: ':visible'
+              }
+          },
+          {
+                extend: 'pdfHtml5',
+                download:'open',
+                exportOptions: {
+                    columns: ':visible'
+                }
+          },
+          'colvis',
+        ]
+    } );
+    $('.pagination').addClass('pull-right')
+} );
+</script>

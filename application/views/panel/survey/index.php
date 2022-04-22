@@ -117,6 +117,12 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('.dataex-html5-selectors').DataTable( {
+      responsive: {
+        breakpoints: [{
+          name: 'not-desktop',
+          width: Infinity
+        }]
+      },
         dom: 'Bfrtip',
         buttons: [
           {

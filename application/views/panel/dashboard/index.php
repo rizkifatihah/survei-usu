@@ -24,7 +24,11 @@
 		<div class="col-md-4 col-sm-4">
 			<div class="widget widget-stats bg-blue">
 				<div class="stats-icon stats-icon-lg"><i class="fa fa-users"></i></div>
-				<div class="stats-title"><?php echo $key->kategori?><br>( <?php echo tgl_indo($key2->mulai_survei)?> - <?php echo tgl_indo($key2->selesai_survei)?>)</div>
+				<div class="stats-title"><?php echo $key->kategori?>
+				<?php if($key->sub_category){
+					echo '</br>'.$key->sub_category;
+				}?>
+				<br>( <?php echo tgl_indo($key2->mulai_survei)?> - <?php echo tgl_indo($key2->selesai_survei)?>)</div>
 				<div class="stats-number">
 					<label style="color:white">Jumlah Survei : <?php echo $getDataUsed->hitung .'/'. $getJumlah->hitung; ?></label><br>
 					<label style="color:white">Poin : 

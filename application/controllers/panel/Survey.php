@@ -75,8 +75,14 @@ class Survey extends CI_Controller
 		if (cekModul($this->akses_controller) == FALSE) redirect('auth/access_denied');
 		if($this->session->userdata('unit') == ''){
 			if ($param1 == 'doCreate') {
+				if($this->input->post('sub_category') == ''){
+					$sub_category = null;
+				}else{
+					$sub_category = $this->input->post('sub_category');
+				}
 				$dataSurvey = array(
 					'kategori' => $this->input->post('kategori'),
+					'sub_category' => $sub_category,
 					'jumlah_survei' => $this->input->post('jumlah_survei'),
 					'mulai_survei' => $this->input->post('mulai_survei'),
 					'selesai_survei' => $this->input->post('selesai_survei'),
@@ -109,7 +115,8 @@ class Survey extends CI_Controller
 				}
 			}elseif($param1 == 'getStandart'){
 				$kategori_unit = $this->input->get('kategori');
-				$getStandart = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$kategori_unit);
+				$getKategori = $this->GeneralModel->get_by_id_general('survei_kategori','nama_kategori',$kategori_unit);
+				$getStandart = $this->GeneralModel->get_by_id_general('survei_sub_kategori','kategori',$getKategori[0]->keterangan);
 				if ($getStandart) {
 					echo json_encode($getStandart,JSON_PRETTY_PRINT);
 				}else{
@@ -240,11 +247,18 @@ class Survey extends CI_Controller
 	{
 		if($param1 == 'excel'){
 			$data['title'] = $this->title;
-			$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','id_detail_survei',$param1);
+			$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','id_detail_survei',$param2);
 			$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
 			$data['id'] = $param2;
-			$data['jawaban'] = $this->GeneralModel->get_by_id_general('survei_jawaban','id_detail_survei',1);
+			$data['jawaban'] = $this->GeneralModel->get_by_id_general('survei_jawaban','id_detail_survei',$param2);
 			$this->load->view('panel/survey/printJawabanSurvei', $data);
+		}else if($param1 == 'excelAll'){
+			$data['title'] = $this->title;
+			$data['detailSurvei'] = $this->GeneralModel->get_by_id_general('survei_detail_survei','id_survei',$param2);
+			$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
+			$data['id'] = $param2;
+			$data['jawaban'] = $this->GeneralModel->get_by_id_general('survei_jawaban','id_survei',$param2);
+			$this->load->view('panel/survey/printJawabanSurveiAll', $data);
 		}else{
 			$data['title'] = $this->title;
 			$data['subtitle'] = 'Answer Survey';

@@ -72,7 +72,12 @@
               <?php $no=1; foreach($listSurvei as $row):?>
                 <tr>
                   <td><?php echo $no?>
-                  <td><?php echo $row->kategori; ?></td>
+                  <td>
+                    <?php echo $row->kategori; ?>
+                    <?php if($row->sub_category) { ?>
+                      - <?php echo $row->sub_category; ?>
+                    <?php } ?>
+                  </td>
                   <td>
                     <?php $getDataUsed = $this->db->query("SELECT COUNT(*) as hitung FROM survei_detail_survei WHERE id_survei = '$row->id_daftar_survei' AND status='Digunakan'")->row();?>
                     <?php echo $getDataUsed->hitung .'/'. $row->jumlah_survei; ?>

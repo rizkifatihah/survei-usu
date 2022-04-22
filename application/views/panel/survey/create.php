@@ -49,17 +49,30 @@
                     type:'GET',
                     data:'kategori='+val,
                     success:function(resp){
-                      $('#standar_pelayanan').html('<option value="">-- Select Services --</option>');
                       if (resp!='false') {
+                        $('#standar_pelayanan').html('<option value="">-- Select Sub Category --</option>');
+                        $('#standar_pelayanan').prop('disabled', false);
                         var data = JSON.parse(resp)
                         $.each(data,function(key,val){
-                           $('#standar_pelayanan').append('<option value="'+val.nama_unit_kerja+'">'+val.nama_unit_kerja+'</option>');
+                           $('#standar_pelayanan').append('<option value="'+val.nama_sub_kategori+'">'+val.nama_sub_kategori+'</option>');
                         });
+                      }else{
+                        $('#standar_pelayanan').prop('disabled', true);
+                        $('#standar_pelayanan').html('<option value=""></option> disabled');
                       }
                     }
                   })
                 }
             </script>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Sub Category</label>
+                <div class="col-md-10">
+                    <select disabled class="form-control select2" name="sub_category" id="standar_pelayanan">
+                    </select>
+                    </div>
+              </div>
+            </div>
             <div class="col-md-12">
               <div class="form-group">
                 <label class="col-md-2 control-label">Number of surveys you want to create</label>

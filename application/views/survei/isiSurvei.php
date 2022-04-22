@@ -36,6 +36,9 @@ td {
         <div class="row">
             <h3 align="center" class="text-grey text-light"><b><?php echo $this->session->userdata('standar_pelayanan')?></b></h3>
             <h4 align="center" class="text-grey text-light"><?php echo $survei[0]->kategori; ?></h4>
+            <?php if($survei[0]->sub_category) { ?>
+            <h4 align="center" class="text-grey text-light"><?php echo $survei[0]->sub_category; ?></h4>
+            <?php } ?>
             <hr>
             <form method="post" action="<?php echo base_url('survei/submitSurvei?id='.$id); ?>">
             <div class="form-group">

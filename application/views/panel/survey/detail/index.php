@@ -32,6 +32,7 @@
               <br>
           </div>
           <a href="<?php echo base_url(changeLink('panel/survey/listSurvey')); ?>" class="btn btn-xs btn-danger">Back</a>
+          <a href="<?php echo base_url(changeLink('panel/survey/answerSurvei/excelAll/')); ?><?php echo $id?>" class="btn btn-xs btn-success">Download</a>
             <br />
             <br />
           <table id="table" class="table table-striped table-bordered" width="100%">

@@ -74,6 +74,9 @@
 					<img src="<?php echo base_url() . $appsProfile->icon; ?>" class="logo"><br />
 					<h2 align="center" class="text-grey text-light"><br><?php echo $appsProfile->apps_name; ?></h2>
 					<h4 align="center" class="text-grey text-light"><?php echo $survei[0]->kategori; ?></h4>
+					<?php if($survei[0]->sub_category) { ?>
+					<h4 align="center" class="text-grey text-light"><?php echo $survei[0]->sub_category; ?></h4>
+					<?php } ?>
 					<?php echo $this->session->flashdata('notif'); ?>
 					<?php if($detailSurvei[0]->status == 'Belum Digunakan') { ?>
 					<?php if($detailSurvei[0]->start_date <= date('Y-m-d') && $detailSurvei[0]->end_date >= date('Y-m-d')) { ?>

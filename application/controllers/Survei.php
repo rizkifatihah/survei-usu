@@ -48,7 +48,13 @@ class Survei extends CI_Controller {
 					$data['pertanyaan'] = $this->GeneralModel->get_general('survei_pertanyaan');
 					$data['survei'] = $this->GeneralModel->get_by_id_general('survei_daftar_survei','id_daftar_survei',$id_survei);
 					$survei1= $data['survei'];
-					$data['services'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$survei1[0]->kategori);
+					$kategori = $survei1[0]->kategori;
+					if($survei1[0]->sub_category){
+						$sub_category = $survei1[0]->sub_category;
+						$data['services'] = $this->db->query("SELECT * FROM survei_standar_pelayanan WHERE kategori_unit = '$kategori' AND keterangan_standar_pelayanan = '$sub_category'")->result();
+					}else{
+						$data['services'] = $this->GeneralModel->get_by_id_general('survei_standar_pelayanan','kategori_unit',$survei1[0]->kategori);
+					}
 					$data['appsProfile'] = $this->SettingsModel->get_profile();
 					$data['content'] = 'survei/isiSurvei';
 					$this->load->view('survei/content',$data);

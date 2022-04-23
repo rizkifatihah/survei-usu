@@ -38,6 +38,15 @@
 					  $poinSementara = $PoinTotal/$jumlahBagi;
 					  $jumlahData = (int)$getDataUsed->hitung;
 					  echo $poinSementara/$jumlahData;
+					  if($poinSementara/$jumlahData > 0.9 && $poinSementara/$jumlahData < 2.5996){
+						  echo '<br><i class="fa fa-star"></i>D (Tidak Baik)</i>';
+					  }else if($poinSementara/$jumlahData > 2.5996 && $poinSementara/$jumlahData < 3.064){
+						  echo '<br><i class="fa fa-star"></i><br><i class="fa fa-star"></i>C (Kurang Baik)</i>';
+					  }else if($poinSementara/$jumlahData > 3.064 && $poinSementara/$jumlahData < 3.532){
+						  echo '<br><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star">B (Baik)</i>';
+					  }else if($poinSementara/$jumlahData > 3.532 && $poinSementara/$jumlahData < 4.1){
+						  echo '<br><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star">A (Sangat Baik)</i>';
+					  }
                       }else{
                         echo 0;
                       }

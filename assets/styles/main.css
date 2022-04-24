@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    font-family: 'Maven Pro', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    color: #33813C;
+    background-color: #7FA147;
+}
+
+.m-1 {
+    margin-bottom: 12px;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+}
+
+.centered-survey {
+    background-color: #f3f3f3;
+    color: #333;
+    border-radius: 2px 2px 0px 0px;
+    min-width: 70%;
+    margin: 64px auto;
+
+}
+
+.centered {
+    background-color: #33813C;
+    border-radius: 12px;
+    min-width: 70%;
+    min-height: 70%;
+    margin: auto;
+}
+
+.logo-size {
+    width: 240px;
+    height: 240px;
+}
+
+.survey-title {
+    text-align: center;
+    color: #333;
+}
+
+.sub-content-title {
+    color: #fff;
+    background-color: #33813C;
+    margin: 0;
+    padding: 6px 12px;
+}
+
+.column {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+}
+
+.logo-container {
+    margin: auto;
+}
+
+.content-container {
+    background-color: #fff;
+    border-radius: 0px 12px 12px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px;
+}
+
+.question-list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.question-title {
+    font-weight: bold;
+}
+
+.form-control {
+    min-height: 50vh;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+
+.form-input-dropdown {
+    margin: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.input-field {
+    margin-top: 16px;
+    padding-left:12px;
+    border: 1px solid #33813C;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: #33813C;
+    height: 32px;
+    background-color: #f3f3f3;
+}
+
+.input-field:focus {
+    outline: none;
+}
+
+.input-dropdown {
+    padding: 12px;
+    border: 0;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-image: url('../img/arrow-down.png');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 16px) center;
+    background-size: 10px;
+    font-family: inherit;
+}
+
+.input-dropdown:focus {
+    outline: none;
+}
+
+.form-button {
+    text-align: center;
+}
+
+.btn-survey {
+    color: #f3f3f3;
+    font-size: 16px;
+    background-color: #33813C;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    padding: 12px 32px;
+    cursor: pointer;
+}
+
+.btn-submit {
+    color: #f3f3f3;
+    font-size: 16px;
+    background-color: #33813C;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    padding: 6px 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    color: #33813C;
+    background-color: #fff;
+    border: 2px solid #33813C;
+    transition: all ease-in-out 0.3s;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.footer {
+    text-align: center;
+    color: #333;
+}
+
+.linkto {
+    text-decoration: none;
+    color: #33813C;
+}
+
+.tf {
+    display: flex;
+    gap: 24px;
+    margin-left: 32px;
+}
+
+input[id=tf] {
+    -ms-transform: scale(2); /* IE 9 */
+    -webkit-transform: scale(2); /* Chrome, Safari, Opera */
+    transform: scale(2);
+    accent-color: #33813C;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+.alert-secondary {
+    color: #383d41;
+    background-color: #e2e3e5;
+    border-color: #d6d8db;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.alert-light {
+    color: #818182;
+    background-color: #fefefe;
+    border-color: #fdfdfe;
+}
+
+.alert-dark {
+    color: #1b1e21;
+    background-color: #d6d8d9;
+    border-color: #c6c8ca;
+}
+
+
+

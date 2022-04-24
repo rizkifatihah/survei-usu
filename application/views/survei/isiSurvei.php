@@ -1,145 +1,187 @@
-<style>
-    p {
-    margin: 0 1 10px;
-}
-td {
-  text-align: left;
-}
-
-</style>
-<!-- begin #content -->
-<div id="content" class="content" style="margin-left: 0px;padding-top:30px">
-  <!-- begin breadcrumb -->
-  <ol class="breadcrumb pull-right">
-  <li><a href="javascript:;">Survei</a></li>
-    <li><a href="javascript:;"><?php echo $survei[0]->kategori?></a></li>
-  </ol>
-  <!-- end breadcrumb -->
-  <!-- begin page-header -->
-  <h1 class="page-header"></h1>
-  <br><br>
-  <!-- end page-header -->
-  <!-- begin row -->
-  <div class="row">
-    <div class="col-md-12">
-    <div class="col-md-3"></div>
-    <!-- begin col-12 -->
-    <div class="col-md-6">
-      <!-- begin panel -->
-      <div class="panel panel-inverse">
-        <div class="panel-heading">
-          <div class="panel-heading-btn">
-          </div>
-          <h4 class="panel-title"><?php echo $appsProfile->apps_name; ?></h4>
-        </div>
-        <div class="panel-body">
-        <div class="row">
-            <h3 align="center" class="text-grey text-light"><b><?php echo $this->session->userdata('standar_pelayanan')?></b></h3>
-            <h4 align="center" class="text-grey text-light"><?php echo $survei[0]->kategori; ?></h4>
-            <?php if($survei[0]->sub_category) { ?>
-            <h4 align="center" class="text-grey text-light"><?php echo $survei[0]->sub_category; ?></h4>
-            <?php } ?>
-            <hr>
-            <form method="post" action="<?php echo base_url('survei/submitSurvei?id='.$id); ?>">
-            <div class="form-group">
-                <div class="row">
-                <div class="col-xs-12">
-                <div class="col-xs-10" style="margin-left:40px;margin-right:30px;">
-                <table style="width: 100%;">
-                  <tr>
-                    <td>
-                    <p style="color:black;font-size:16px;">Pelayanan apa yang anda lakukan?</p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <select class="form-control input-line select2" name="standar_pelayanan" id="standar_pelayanan" required>
-                        <option value="">Pilih Pelayanan</option>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/main.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/radio.css">
+        <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() . $appsProfile->icon; ?>">  
+        <script src="<?php echo base_url('assets/'); ?>plugins/jquery/jquery-1.9.1.min.js"></script>
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/responsive.css">
+        <title><?php echo $appsProfile->apps_name; ?></title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="centered-survey">
+                <h4 class="sub-content-title"><?php echo $appsProfile->apps_name; ?></h4>
+                <h2 class="survey-title"><?php echo $survei[0]->kategori; ?></h2>
+                <?php if($survei[0]->sub_category) { ?>
+                  <h2 class="survey-title"><?php echo $survei[0]->sub_category; ?></h2>
+                <?php } ?>
+                <form class="form-control" method="post" action="<?php echo base_url('survei/submitSurvei?id='.$id); ?>">
+                    <div class="form-input-dropdown">
+                        <label>Pelayanan apa yang anda lakukan ?</label>
+                        <select class="input-dropdown" for="services" name="standar_pelayanan">
+                            <option value="">Pilih Pelayanan</option>
                         <?php foreach($services as $row):?>
                           <option value="<?php echo $row->nama_unit_kerja; ?>"><?php echo $row->nama_unit_kerja; ?></option>
                         <?php endforeach;?>
-                      </select>
-                    </td>
-                  </tr>
-                </table>
-                </div>
-                </div>
-                </div>
+                        </select>
+                    </div>
+                    <ol class="question-list">
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kemudahan mendapatkan informasi persyaratan ?</li>
+                            <input type="hidden" name="id_pertanyaan-1"  value="1">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-1" id="question-1-ans-1" value="1" required>
+                                <label for="question-1-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-1" id="question-1-ans-2" value="2" required>
+                                <label for="question-1-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-1" id="question-1-ans-3" value="3" required>
+                                <label for="question-1-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-1" id="question-1-ans-4" value="4" required>
+                                <label for="question-1-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-1"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kemudahan memenuhi persyaratan persyaratan pelayanan ?</li>
+                            <input type="hidden" name="id_pertanyaan-2"  value="2">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-2" id="question-2-ans-1" value="1" required>
+                                <label for="question-2-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-2" id="question-2-ans-2" value="2" required>
+                                <label for="question-2-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-2" id="question-2-ans-3" value="3" required>
+                                <label for="question-2-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-2" id="question-2-ans-4" value="4" required>
+                                <label for="question-2-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-2"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kemudahan prosedur pelayanan ?</li>
+                            <input type="hidden" name="id_pertanyaan-3"  value="3">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-3" id="question-3-ans-1" value="1" required>
+                                <label for="question-3-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-3" id="question-3-ans-2" value="2" required>
+                                <label for="question-3-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-3" id="question-3-ans-3" value="3" required>
+                                <label for="question-3-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-3" id="question-3-ans-4" value="4" required>
+                                <label for="question-3-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-3"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana ketepatan waktu dalam penyelesaian pelayanan ?</li>
+                            <input type="hidden" name="id_pertanyaan-4"  value="4">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-4" id="question-4-ans-1" value="1" required>
+                                <label for="question-4-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-4" id="question-4-ans-2" value="2" required>
+                                <label for="question-4-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-4" id="question-4-ans-3" value="3" required>
+                                <label for="question-4-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-4" id="question-4-ans-4" value="4" required>
+                                <label for="question-4-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-4"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan ?</li>
+                            <input type="hidden" name="id_pertanyaan-5"  value="5">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-5" id="question-5-ans-1" value="1" required>
+                                <label for="question-5-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-5" id="question-5-ans-2" value="2" required>
+                                <label for="question-5-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-5" id="question-5-ans-3" value="3" required>
+                                <label for="question-5-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-5" id="question-5-ans-4" value="4" required>
+                                <label for="question-5-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-5"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kompetensi dan kemampuan petugas dalam memberikan pelayanan ?</li>
+                            <input type="hidden" name="id_pertanyaan-6"  value="6">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-6" id="question-6-ans-1" value="1" required>
+                                <label for="question-6-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-6" id="question-6-ans-2" value="2" required>
+                                <label for="question-6-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-6" id="question-6-ans-3" value="3" required>
+                                <label for="question-6-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-6" id="question-6-ans-4" value="4" required>
+                                <label for="question-6-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-6"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana perilaku petugas terkait kesopanan dan keramahan dalam memberikan pelayanan ?</li>
+                            <input type="hidden" name="id_pertanyaan-7"  value="7">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-7" id="question-7-ans-1" value="1" required>
+                                <label for="question-7-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-7" id="question-7-ans-2" value="2" required>
+                                <label for="question-7-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-7" id="question-7-ans-3" value="3" required>
+                                <label for="question-7-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-7" id="question-7-ans-4" value="4" required>
+                                <label for="question-7-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-7"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kualitas sarana dan prasarana pendukung pelayanan ?</li>
+                            <input type="hidden" name="id_pertanyaan-8"  value="8">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-8" id="question-8-ans-1" value="1" required>
+                                <label for="question-8-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-8" id="question-8-ans-2" value="2" required>
+                                <label for="question-8-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-8" id="question-8-ans-3" value="3" required>
+                                <label for="question-8-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-8" id="question-8-ans-4" value="4" required>
+                                <label for="question-8-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-8"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Apakah anda diminta bayaran ?</li>
+                            <input type="hidden" name="id_pertanyaan-9"  value="9">
+                            <div class="tf">
+                                <input type="radio" name="question-9" id="tf" class="Ya" /><label>Iya</label>
+                                <input type="radio" name="question-9" id="tf" class="Tidak" /><label>Tidak</label>
+                                <input type="text" name="keterangan_tambahan[9]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="width:50%;display:none;" >
+                                <script>
+                                    $('.Ya').click(function(){
+                                        $('#keterangan_tambahan').show();
+                                    });
+                                    $('.Tidak').click(function(){
+                                        $('#keterangan_tambahan').hide();
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Apakah tersedia tempat pengaduan ?</li>
+                            <input type="hidden" name="id_pertanyaan-10"  value="10">
+                            <div class="tf">
+                                <input type="radio" name="question-10" id="tf" /><label>Iya</label>
+                                <input type="radio" name="question-10" id="tf" /><label>Tidak</label>
+                            </div>
+                        </div>
+                        <div class="form-button">
+                            <button class="btn-submit">Kirim Jawaban</button>
+                        </div>
+                    </ol>
+                </form>
+                <div class="footer"><p>Powered By <a class="linkto" href="<?php echo base_url()?>">Universitas Sumatera Utara</a></p></div>
             </div>
-                <?php $i=1; foreach($pertanyaan as $p):?>
-                <div class="row">
-                <div class="col-xs-12">
-                <div class="col-xs-10" style="margin-left:40px;margin-right:30px;">
-                <table>
-                  <tr>
-                    <td valign="top">
-                    <p style="color:black;font-size:16px;"><?php echo $i; ?>. &nbsp;</p>
-                    </td>
-                    <td valign="top">
-                    <p style="color:black;font-size:16px;"><?php echo $p->pertanyaan; ?>
-                      <input type="hidden" name="id_pertanyaan[]" value="<?php echo $p->id_pertanyaan; ?>">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td>
-                    <p style="color:black;font-size:16px;">Jawaban : </p>
-                    <?php if($p->kategori_jawaban == '1'): ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:16px;margin-right:13px;">Sangat Puas</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:16px;margin-right:13px;">Puas</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2"> <label style="font-size:16px;margin-right:13px;">Tidak Puas</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:16px;margin-right:13px;">Sangat Tidak Puas</label>
-                    <?php elseif($p->kategori_jawaban == '2'): ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="1"> <label style="font-size:16px;margin-right:13px;">1</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="2"> <label style="font-size:16px;margin-right:13px;">2</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="3"> <label style="font-size:16px;margin-right:13px;">3</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="4"> <label style="font-size:16px;margin-right:13px;">4</label>
-                    <?php elseif($p->kategori_jawaban == '3'): ?>
-                        <?php if($i == '9'){ ?>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" id="jawabanYa" value="YA"> <label style="font-size:16px;margin-right:13px;" >Ya</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" id="jawabanTidak" value="TIDAK"> <label style="font-size:16px;margin-right:13px;">Tidak</label>
-                        <br>
-                        <input type="text" class="form-control" name="keterangan_tambahan[<?php echo $p->id_pertanyaan; ?>]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;">
-                        <br>
-                        <script>
-                            $('#jawabanYa').click(function(){
-                                $('#keterangan_tambahan').show();
-                            });
-                            $('#jawabanTidak').click(function(){
-                                $('#keterangan_tambahan').hide();
-                            });
-                        </script>
-                        <?php }else{ ?>
-                          <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA"> <label style="font-size:16px;margin-right:13px;">Ya</label>
-                        <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK"> <label style="font-size:16px;margin-right:13px;">Tidak</label>
-                        <br>
-                        <?php } ?>
-                        <?php endif; ?>
-                    </td>
-                  </tr>
-                </table>
-                </div>
-                </div>
-                </div>
-                <?php $i++; endforeach; ?>
-                <br />
-                <div class="form-group" align="center">
-                    <button type="submit" class="btn btn-flat btn-success ">KIRIM JAWABAN</button>
-                    <hr>
-                    <br>
-                    <small><?php echo $appsProfile->footer; ?></small>
-                </div>
-            </div>
-            </form>
         </div>
-        </div>
-      </div>
-      <!-- end panel -->
-    </div>
-    <!-- end col-12 -->
-    <div class="col-md-3"></div>
-    </div>
-  </div>
-  <!-- end row -->
-</div>
-<!-- end #content -->
+    </body>
+</html>

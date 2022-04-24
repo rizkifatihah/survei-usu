@@ -1,0 +1,25 @@
+@media (max-width: 430px) {
+    label::before {
+        font-size: 10px !important; 
+    }
+    .responsive-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.1fr 0.1fr;
+    }
+    .logo-size {
+        width: 160px;
+        height: 160px;
+    }
+    .content-container {
+        border-radius: 12px 12px 0px 0px;
+    }
+    .centered {
+        border-radius: 0px;
+    }
+}
+
+@media (max-width: 320px) {
+    label::before {
+        font-size: 8px !important; 
+    }
+}

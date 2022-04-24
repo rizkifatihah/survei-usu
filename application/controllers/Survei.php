@@ -74,13 +74,12 @@ class Survei extends CI_Controller {
 		$answer = $this->input->post('jawaban'); 
 		$keterangan_tambahan = $this->input->post('keterangan_tambahan');
 		$data = array();
-		$jumlahPertanyaan = count($question);
 		$index = 0; 
 		$dataJawaban = array();
-		for($i=0;$i<$jumlahPertanyaan;$i++){
+		for($i=1;$i<10;$i++){
 			$dataJawaban[$i] = array(
-				'id_pertanyaan' => $question[$i],
-				'jawaban' => $answer[$i+1],
+				'id_pertanyaan' => $this->input->post('id_pertanyaan-' . $i),
+				'jawaban' => $this->input->post('question-' . $i),
 				'nama_surveyor' => $this->session->userdata('nama_surveyor'),
 				'email_surveyor' => $this->session->userdata('email_surveyor'),
 				'id_detail_survei' => $detailSurvei[0]->id_detail_survei,
@@ -102,12 +101,22 @@ class Survei extends CI_Controller {
 			'standar_pelayanan' => $this->input->post('standar_pelayanan'),
 			'updated_time' => date('Y-m-d H:i:s')
 		);
-		$this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei);
-		$this->session->unset_userdata('nama_surveyor');
-		$this->session->unset_userdata('email_surveyor');
-		$this->session->unset_userdata('standar_pelayanan');
-		$this->session->set_flashdata('notif', '<div class="alert alert-success">Terima Kasih Sudah Mengisi Survei</div>');
-		redirect('survei?id='.$id);
+		if ($this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei) == TRUE) {
+			$this->session->unset_userdata('nama_surveyor');
+			$this->session->unset_userdata('email_surveyor');
+			$this->session->unset_userdata('standar_pelayanan');
+			$this->session->set_flashdata('notif', '<div class="alert alert-success">Terima Kasih Sudah Mengisi Survei</div>');
+			redirect('survei?id='.$id);
+		} else {
+			$this->session->unset_userdata('nama_surveyor');
+			$this->session->unset_userdata('email_surveyor');
+			$this->session->unset_userdata('standar_pelayanan');
+			$this->GeneralModel->delete_general('survei_jawaban', 'id_detail_survei', $detailSurvei[0]->id_detail_survei);
+			$this->session->set_flashdata('notif', '<div class="alert alert-danger">Survei Gagal Diisi</div>');
+			redirect('survei?id='.$id);
+		}
+		;
+		
 
 	}
 }

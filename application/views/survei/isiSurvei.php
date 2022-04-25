@@ -20,8 +20,10 @@
                   <h2 class="survey-title"><?php echo $survei[0]->sub_category; ?></h2>
                 <?php } ?>
                 <form class="form-control" method="post" action="<?php echo base_url('survei/submitSurvei?id='.$id); ?>">
+                    
                     <div class="form-input-dropdown">
-                        <label>Pelayanan apa yang anda lakukan ?</label>
+                        <small><center>Selamat Datang di Sistem Survei Kepuasan Pelayanan Universitas Sumatera Utara. Jangan ragu untuk memberikan tanggapan Anda Kepada kami.<br>Tanggapan anda sangat berarti untuk peningkatan pelayanan di Universitas Sumatera Utara.<br><br></center></small>
+                        <label>Pelayanan apa yang anda terima ?</label>
                         <select class="input-dropdown" for="services" name="standar_pelayanan">
                             <option value="">Pilih Pelayanan</option>
                         <?php foreach($services as $row):?>
@@ -156,10 +158,10 @@
                             <input type="hidden" name="id_pertanyaan-9"  value="9">
                             <div class="tf">
                                 <div>
-                                    <input type="radio" name="question-9" id="tf" class="Ya" /><label>Iya</label>
+                                    <input type="radio" name="question-9" id="tf" class="Ya" value="Ya" /><label>Iya</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="question-9" id="tf" class="Tidak" /><label>Tidak</label>
+                                    <input type="radio" name="question-9" id="tf" class="Tidak" value="Tidak" /><label>Tidak</label>
                                 </div>
                                 </div>
                                 <input type="text" class="input-tf" name="keterangan_tambahan[9]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;" >
@@ -180,10 +182,10 @@
                             <input type="hidden" name="id_pertanyaan-10"  value="10">
                             <div class="tf">
                                 <div>
-                                    <input type="radio" name="question-10" id="tf" /><label>Iya</label>
+                                    <input type="radio" value="Ya" name="question-10" id="tf" /><label>Iya</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="question-10" id="tf" /><label>Tidak</label>
+                                    <input type="radio" value="Tidak" name="question-10" id="tf" /><label>Tidak</label>
                                 </div>
                             </div>
                             </div>
@@ -194,7 +196,7 @@
                         </div>
                     </ol>
                 </form>
-                <div class="footer"><p>Powered By <a class="linkto" href="">Universitas Sumatera Utara</a></p></div>
+                <div class="footer"><p>Powered By <br> <a class="linkto" href="">Universitas Sumatera Utara</a></p></div>
             </div>
         </div>
     </body>

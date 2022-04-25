@@ -52,7 +52,7 @@
                             </center>
 						<?php } ?>
 					<?php } ?>
-                    <div class="footer"><p>Powered By <a class="linkto" href="<?php echo base_url()?>">Universitas Sumatera Utara</a></p></div>
+                    <div class="footer"><p>Powered By <a class="linkto" href="">Universitas Sumatera Utara</a></p></div>
                 </form>
             </div>
         </div>

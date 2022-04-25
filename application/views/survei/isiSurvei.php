@@ -152,11 +152,17 @@
                         </div>
                         <div>
                             <li class="m-1 question-title">Apakah anda diminta bayaran ?</li>
+                            <div class="tf-container">
                             <input type="hidden" name="id_pertanyaan-9"  value="9">
                             <div class="tf">
-                                <input type="radio" name="question-9" id="tf" class="Ya" /><label>Iya</label>
-                                <input type="radio" name="question-9" id="tf" class="Tidak" /><label>Tidak</label>
-                                <input type="text" name="keterangan_tambahan[9]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="width:50%;display:none;" >
+                                <div>
+                                    <input type="radio" name="question-9" id="tf" class="Ya" /><label>Iya</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="question-9" id="tf" class="Tidak" /><label>Tidak</label>
+                                </div>
+                                </div>
+                                <input type="text" class="input-tf" name="keterangan_tambahan[9]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;" >
                                 <script>
                                     $('.Ya').click(function(){
                                         $('#keterangan_tambahan').show();
@@ -168,11 +174,19 @@
                             </div>
                         </div>
                         <div>
+                            <div class="question-control">
                             <li class="m-1 question-title">Apakah tersedia tempat pengaduan ?</li>
+                            <div class="tf-container">
                             <input type="hidden" name="id_pertanyaan-10"  value="10">
                             <div class="tf">
-                                <input type="radio" name="question-10" id="tf" /><label>Iya</label>
-                                <input type="radio" name="question-10" id="tf" /><label>Tidak</label>
+                                <div>
+                                    <input type="radio" name="question-10" id="tf" /><label>Iya</label>
+                                </div>
+                                <div>
+                                    <input type="radio" name="question-10" id="tf" /><label>Tidak</label>
+                                </div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                         <div class="form-button">
@@ -180,7 +194,7 @@
                         </div>
                     </ol>
                 </form>
-                <div class="footer"><p>Powered By <a class="linkto" href="<?php echo base_url()?>">Universitas Sumatera Utara</a></p></div>
+                <div class="footer"><p>Powered By <a class="linkto" href="">Universitas Sumatera Utara</a></p></div>
             </div>
         </div>
     </body>

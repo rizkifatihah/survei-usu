@@ -182,7 +182,25 @@ button:hover {
 .tf {
     display: flex;
     gap: 24px;
-    margin-left: 32px;
+}
+
+.tf-container {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.input-tf {
+    padding-left:12px;
+    border: 1px solid #33813C;
+    color: #33813C;
+    height: 32px;
+    background-color: #f3f3f3;
+    width: 240px;
+}
+
+.input-tf:focus {
+    outline: none;
 }
 
 input[id=tf] {
@@ -190,7 +208,9 @@ input[id=tf] {
     -webkit-transform: scale(2); /* Chrome, Safari, Opera */
     transform: scale(2);
     accent-color: #33813C;
+    margin-right: 12px;
 }
+
 
 .alert {
     position: relative;
@@ -247,6 +267,7 @@ input[id=tf] {
     background-color: #d6d8d9;
     border-color: #c6c8ca;
 }
+
 
 
 

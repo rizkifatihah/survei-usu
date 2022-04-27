@@ -35,7 +35,7 @@ form #satisfaction-slider label::before {
   content: attr(data-satisfaction);
   position: absolute;
   left: 50%;
-  padding-top: 10px;
+  padding-top: 2px;
   transform: translate(-50%, 45px);
   font-size: 14px;
   letter-spacing: 0.4px;
@@ -278,7 +278,7 @@ form #satisfaction-slider #satisfaction-pos-1 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -292,7 +292,7 @@ form #satisfaction-slider #satisfaction-pos-2 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -306,7 +306,7 @@ form #satisfaction-slider #satisfaction-pos-3 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -320,7 +320,7 @@ form #satisfaction-slider #satisfaction-pos-4 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -334,7 +334,7 @@ form #satisfaction-slider #satisfaction-pos-5 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -348,7 +348,7 @@ form #satisfaction-slider #satisfaction-pos-6 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -362,7 +362,7 @@ form #satisfaction-slider #satisfaction-pos-7 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);
@@ -376,7 +376,7 @@ form #satisfaction-slider #satisfaction-pos-8 {
   top: 50%;
   width: 12px;
   height: 12px;
-  background: #7FA147;
+  background: #33813C;
   border-radius: 50%;
   transition: all 0.15s ease-in-out;
   transform: translate(-50%, -50%);

@@ -85,7 +85,6 @@ class Survei extends CI_Controller {
 				'id_detail_survei' => $detailSurvei[0]->id_detail_survei,
 				'id_survei' => $detailSurvei[0]->id_survei,
 				'standar_pelayanan' => $this->input->post('standar_pelayanan'),
-				'created_by' => $this->session->userdata('id_pengguna'),
 				'created_time' => date('Y-m-d H:i:s')
 			);
 			if($i == 8){
@@ -102,25 +101,11 @@ class Survei extends CI_Controller {
 			'updated_time' => date('Y-m-d H:i:s')
 		);
 		if ($this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei) == TRUE) {
-			if($this->session->userdata('nama_surveyor') || $this->session->userdata('email_surveyor')){
 				$this->session->unset_userdata('nama_surveyor');
 				$this->session->unset_userdata('email_surveyor');
-				$dataStatusSurvei = array(
-					'status' => 'Belum Digunakan',
-					'standar_pelayanan' => null,
-					'updated_time' => null
-				);
-				$this->GeneralModel->delete_general('survei_jawaban', 'id_detail_survei', $detailSurvei[0]->id_detail_survei);
-				$this->GeneralModel->update_general('survei_detail_survei', 'id_detail_survei', $detailSurvei[0]->id_detail_survei, $dataStatusSurvei);
-				$this->session->set_flashdata('notif', '<div class="alert alert-danger">Survei Gagal Diisi</div>');
-				redirect('survei?id='.$id);
-			}else{
-				$this->session->unset_userdata('nama_surveyor');
-				$this->session->unset_userdata('email_surveyor');
-				$this->session->unset_userdata('standar_pelayanan');
 				$this->session->set_flashdata('notif', '<div class="alert alert-success">Terima Kasih Sudah Mengisi Survei</div>');
 				redirect('survei?id='.$id);
-			}
+		
 		} else {
 			$this->session->unset_userdata('nama_surveyor');
 			$this->session->unset_userdata('email_surveyor');

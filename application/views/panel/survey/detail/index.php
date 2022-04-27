@@ -49,7 +49,7 @@
               <?php $no=1; foreach($detailSurvei as $key):?>
               <tr>
                 <td> <?php echo $no++; ?> </td>
-                <td> <a href="<?php echo base_url('survei?id=')?><?php echo $key->kode_survei; ?>"><?php echo base_url('survei?id=')?><?php echo $key->kode_survei; ?></a> </td>
+                <td> <a href="<?php echo base_url('survei?id=')?><?php echo $key->kode_survei; ?>" target="_blank"><?php echo base_url('survei?id=')?><?php echo $key->kode_survei; ?></a> </td>
                 <td> <?php echo $key->standar_pelayanan; ?> </td>
                 <td>
                   <?php $totalPoin = $this->db->query("SELECT SUM(jawaban) as total FROM survei_jawaban WHERE id_detail_survei = '$key->id_detail_survei'")->row(); ?>

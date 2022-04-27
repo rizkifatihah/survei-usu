@@ -8,7 +8,7 @@ body{
     margin: 0;
     padding: 0;
     color: #33813C;
-    background-color: #7FA147;
+    background-color: #ebebeb;
 }
 
 .m-1 {
@@ -23,15 +23,16 @@ body{
 .centered-survey {
     background-color: #f3f3f3;
     color: #333;
-    border-radius: 2px 2px 0px 0px;
+    border-radius: 0px 12px 12px 12px;
     min-width: 70%;
     margin: 64px auto;
+    box-shadow: 5px 5px #d3d3d3;
 
 }
 
 .centered {
     background-color: #33813C;
-    border-radius: 12px;
+    border-radius: 0px 12px 12px 0px;
     min-width: 70%;
     min-height: 70%;
     margin: auto;
@@ -51,12 +52,14 @@ body{
     color: #fff;
     background-color: #33813C;
     margin: 0;
+    border-radius: 12px 12px 0px 0px;
     padding: 6px 12px;
 }
 
 .column {
     display: grid;
     grid-template-columns: 0.4fr 0.6fr;
+    box-shadow: 5px 5px #d3d3d3;
 }
 
 .logo-container {
@@ -76,6 +79,8 @@ body{
     display: flex;
     flex-direction: column;
     gap: 64px;
+    margin-right: 2rem;
+    margin-left: 1rem;
 }
 
 .question-title {
@@ -120,6 +125,9 @@ body{
 .input-dropdown {
     padding: 12px;
     border: 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -211,7 +219,6 @@ input[id=tf] {
     margin-right: 12px;
 }
 
-
 .alert {
     position: relative;
     padding: 0.75rem 1.25rem;
@@ -268,6 +275,41 @@ input[id=tf] {
     border-color: #c6c8ca;
 }
 
+  @media screen and (min-width: 600px) {
+    .header-survei{
+        background-color: #d6d8d9;
+        color: #fff;
+        padding: 12px;
+        height: 9rem;
+    }
+    
+    .header-survei-img-left {
+        float: left;
+        width: 100px;
+        height: 100px;
+      }
+      
+      .header-survei h1 {
+        position: relative;
+        top: 18px;
+        right: 100px;
+      }
 
+      .header-survei-img-right {
+        float: right;
+        width: 250px;
+        height: 100px;
+        margin-top: -3.5rem;
+      }
+  }
 
-
+  @media screen and (max-width: 600px) {
+    .header-survei{
+        visibility: hidden;
+        background-color: #d6d8d9;
+        color: #fff;
+        padding: 0;
+        height: 1rem;
+        
+    }
+  }

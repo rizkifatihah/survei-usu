@@ -121,16 +121,16 @@
                     <?php elseif($p->kategori_jawaban == '3'): ?>
                         <?php $jawaban = $this->db->get_where('survei_jawaban', array('id_pertanyaan' => $p->id_pertanyaan,'id_detail_survei' => $jawaban[0]->id_detail_survei))->result();?>
                         <?php foreach($jawaban as $j): ?>
-                            <?php if($j->jawaban == 'YA'): ?>
-                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA" checked> <label style="font-size:18px;margin-right:13px;">YA</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK" disabled> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
-                            <?php elseif($j->jawaban == 'TIDAK'): ?>
-                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="YA" disabled> <label style="font-size:18px;margin-right:13px;">YA</label>
-                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="TIDAK" checked> <label style="font-size:18px;margin-right:13px;">TIDAK</label>
+                            <?php if($j->jawaban == 'Ya'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Ya" checked> <label style="font-size:18px;margin-right:13px;">Ya</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak" disabled> <label style="font-size:18px;margin-right:13px;">Tidak</label>
+                            <?php elseif($j->jawaban == 'Tidak'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Ya" disabled> <label style="font-size:18px;margin-right:13px;">Ya</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak" checked> <label style="font-size:18px;margin-right:13px;">Tidak</label>
                             <?php endif; ?>
                             <br>
                             <?php if($p->id_pertanyaan == '9'){?>
-                                <?if($j->jawaban == 'YA'){?>
+                                <?if($j->jawaban == 'Ya'){?>
                                 <input type="text"  value="<?php echo $j->tambahan_keterangan; ?>" class="form-control" style="width:100%;margin-top:10px;" readonly>
                                 <?}?>
                             <?php } ?>

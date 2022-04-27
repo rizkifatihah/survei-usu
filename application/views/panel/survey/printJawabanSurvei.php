@@ -52,7 +52,7 @@ $html .= '<table border="1px" style="width:100%;font-size:10px;" cellspacing="0"
           $html .= '<td>' . $row->pertanyaan . '</td>';
           $cekJawaban = $this->db->query("SELECT * FROM survei_jawaban WHERE id_detail_survei = '$id' AND id_pertanyaan = '$row->id_pertanyaan'")->row();
           if($no == '9'){
-              if($cekJawaban->jawaban == 'YA'){
+              if($cekJawaban->jawaban == 'Ya'){
                 $html .= '<td align="center">'.$cekJawaban->jawaban.'('.$cekJawaban->tambahan_keterangan.')</td>';
               }else{
                 $html .= '<td align="center">'.$cekJawaban->jawaban.'</td>';

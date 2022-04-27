@@ -76,7 +76,7 @@ class Survei extends CI_Controller {
 		$data = array();
 		$index = 0; 
 		$dataJawaban = array();
-		for($i=1;$i<10;$i++){
+		for($i=1;$i<11;$i++){
 			$dataJawaban[$i] = array(
 				'id_pertanyaan' => $this->input->post('id_pertanyaan-' . $i),
 				'jawaban' => $this->input->post('question-' . $i),

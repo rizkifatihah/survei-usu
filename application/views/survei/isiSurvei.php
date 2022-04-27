@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/main.css">
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/radio.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/main1.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/radio1.css">
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() . $appsProfile->icon; ?>">  
         <script src="<?php echo base_url('assets/'); ?>plugins/jquery/jquery-1.9.1.min.js"></script>
         <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/responsive.css">
@@ -166,10 +166,10 @@
                             <input type="hidden" name="id_pertanyaan-9"  value="9">
                             <div class="tf">
                                 <div>
-                                    <input type="radio" name="question-9" id="tf" class="Ya" value="Ya" /><label>Iya</label>
+                                    <input type="radio" name="question-9" id="tf" class="Ya" value="YA" /><label>Iya</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="question-9" id="tf" class="Tidak" value="Tidak" /><label>Tidak</label>
+                                    <input type="radio" name="question-9" id="tf" class="Tidak" value="TIDAK" /><label>Tidak</label>
                                 </div>
                                 </div>
                                 <input type="text" class="input-tf" name="keterangan_tambahan[9]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;" >
@@ -190,10 +190,10 @@
                             <input type="hidden" name="id_pertanyaan-10"  value="10">
                             <div class="tf">
                                 <div>
-                                    <input type="radio" value="Ya" name="question-10" id="tf" /><label>Iya</label>
+                                    <input type="radio" value="YA" name="question-10" id="tf" /><label>Iya</label>
                                 </div>
                                 <div>
-                                    <input type="radio" value="Tidak" name="question-10" id="tf" /><label>Tidak</label>
+                                    <input type="radio" value="TIDAK" name="question-10" id="tf" /><label>Tidak</label>
                                 </div>
                             </div>
                             </div>

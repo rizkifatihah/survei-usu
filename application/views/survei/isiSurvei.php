@@ -4,23 +4,42 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/main1.css">
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/radio1.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/stylesSurvei/main.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/stylesSurvei/radio.css">
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() . $appsProfile->icon; ?>">  
         <script src="<?php echo base_url('assets/'); ?>plugins/jquery/jquery-1.9.1.min.js"></script>
-        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles/responsive.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/stylesSurvei/responsive.css">
         <title><?php echo $appsProfile->apps_name; ?></title>
+        <style>
+        .container2 {
+            /* min-height: 100vh; */
+             display: flex; 
+             width:100%;
+             
+        }
+        p {
+            text-align: center; 
+        }
+        p span { 
+            background-color: white; 
+        }
+  </style>
     </head>
     <body>
-        <div class="header-survei">
-            <center>
-            <img style="margin-left:5rem" class="header-survei-img-left" src="<?php echo base_url().$appsProfile->icon?>" alt="logo" />
-            <h1><?php echo $appsProfile->apps_name?></h1>
-            <img style="margin-right:3rem" class="header-survei-img-right" src="<?php echo base_url('assets/img/TTU-Logo.png')?>" alt="logo" />
-            </center>
+        <div class="container2">
+            <div class="centered-survey" style="height:12rem;margin: 10px auto;border-radius: 12px 12px 12px 12px;background-image: url('<?php echo base_url('assets/img/header birek (1008 x 300px).jpg')?>">
+                <form class="form-control">
+                    
+                    <div class="form-input-dropdown">
+                        <small><center><b><div style="position:relative;color:#333;"><br><br><br><p><span>Sistem Survei Kepuasan Pelayanan Universitas Sumatera Utara</span></p></div></b><br><br></center></small>
+                        <center>
+                    </div>
+                </form>
+                <div class="footer"><p>Powered By  <a class="linkto" href="">Universitas Sumatera Utara</a></p></div>
+            </div>
         </div>
         <div class="container">
-            <div class="centered-survey">
+            <div class="centered-survey" style="margin: 15px auto;">
                 <h4 class="sub-content-title"><?php echo $survei[0]->kategori; ?></h4>
 
                 <?php if($survei[0]->sub_category) { ?>

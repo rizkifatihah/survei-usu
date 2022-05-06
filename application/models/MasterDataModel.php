@@ -14,8 +14,8 @@ class MasterDataModel extends CI_Model {
     $this->datatables->from('survei_kategori');
     $this->datatables->add_column(
       'action',
-       anchor(changeLink('panel/masterData/updateCategory/$1'), '<i class="fa fa-edit"></i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
-      . anchor(changeLink('panel/masterData/deleteCategory/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete category?')")),
+       anchor(changeLink('panel/masterData/updateCategory/$1'), '<i class="fa fa-edit"> Edit</i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
+      . anchor(changeLink('panel/masterData/deleteCategory/$1'), '<i class="fa fa-times"> Delete</i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete category?')")),
       'id_kategori'
     );
     return print_r($this->datatables->generate('json'));
@@ -27,8 +27,8 @@ class MasterDataModel extends CI_Model {
     $this->datatables->from('survei_standar_pelayanan');
     $this->datatables->add_column(
       'action',
-       anchor(changeLink('panel/masterData/updateService/$1'), '<i class="fa fa-edit"></i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
-      . anchor(changeLink('panel/masterData/deleteService/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete service?')")),
+       anchor(changeLink('panel/masterData/updateService/$1'), '<i class="fa fa-edit"> Edit</i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
+      . anchor(changeLink('panel/masterData/deleteService/$1'), '<i class="fa fa-times"> Delete</i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete service?')")),
       'id_standar_pelayanan'
     );
     if (!empty($kategori_unit)) {
@@ -44,8 +44,8 @@ class MasterDataModel extends CI_Model {
     $this->datatables->where("status = '1'");
     $this->datatables->add_column(
       'action',
-       anchor(changeLink('panel/masterData/updateQuestion/$1'), '<i class="fa fa-edit"></i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
-      . anchor(changeLink('panel/masterData/deleteQuestion/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete question?')")),
+       anchor(changeLink('panel/masterData/updateQuestion/$1'), '<i class="fa fa-edit"> Edit</i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
+      . anchor(changeLink('panel/masterData/deleteQuestion/$1'), '<i class="fa fa-times"> Delete</i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete question?')")),
       'id_pertanyaan'
     );
     if (!empty($kategori_unit)) {

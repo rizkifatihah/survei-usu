@@ -32,7 +32,7 @@ $html .= '<table border="1px" style="width:100%;font-size:10px;" cellspacing="0"
         foreach($pertanyaan as $row2){
           $cekJawaban = $this->db->query("SELECT * FROM survei_jawaban WHERE id_detail_survei = '$row->id_detail_survei' AND id_pertanyaan = '$row2->id_pertanyaan'")->row();
           if($row2->id_pertanyaan == '9'){
-            if($cekJawaban->jawaban == 'Ya'){
+            if($cekJawaban->jawaban == 'YA'){
               $html .= '<td align="center">'.$cekJawaban->jawaban.'('.$cekJawaban->tambahan_keterangan.')</td>';
             }else{
               $html .= '<td align="center">'.$cekJawaban->jawaban.'</td>';

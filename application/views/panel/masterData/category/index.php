@@ -92,7 +92,7 @@
           "data": "action",
           width: 100,
           render: function(data, type, row, meta) {
-            var buttonDetail = '<a href="<?php echo base_url(changeLink('panel/masterData/services?category=')); ?>' + row.nama_kategori + '" class="btn btn-xs btn-primary" style="margin-top:5px;margin-right:3px;"><i class="fa fa-eye"></i></a>';
+            var buttonDetail = '<a href="<?php echo base_url(changeLink('panel/masterData/services?category=')); ?>' + row.nama_kategori + '" class="btn btn-xs btn-primary" style="margin-top:5px;margin-right:3px;"><i class="fa fa-eye"> Detail</i></a>';
             return buttonDetail+row.action;
           }
         },

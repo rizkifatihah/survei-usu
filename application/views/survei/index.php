@@ -6,8 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url() . $appsProfile->icon; ?>">
         <title><?php echo $appsProfile->apps_name; ?></title>
-        <link rel="stylesheet" href="<?php echo base_url()?>/assets/styles/main1.css">
-        <link rel="stylesheet" href="<?php echo base_url()?>/assets/styles/responsive1.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>/assets/stylesSurvei/main.css">
+        <link rel="stylesheet" href="<?php echo base_url()?>/assets/stylesSurvei/responsive.css">
+        <style>
+            .centered {
+                background-color: #33813C;
+                border-radius: 12px 12px 12px 12px;
+                min-width: 70%;
+                min-height: 70%;
+                margin: auto;
+            }
+        </style>
     </head>
     <body>
         <div class="container">

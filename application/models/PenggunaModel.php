@@ -18,8 +18,8 @@ class PenggunaModel extends CI_Model {
     $this->datatables->from('survei_pengguna');
     $this->datatables->add_column(
       'action',
-       anchor(changeLink('panel/masterData/updatePengguna/$1'), '<i class="fa fa-edit"></i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
-      . anchor(changeLink('panel/masterData/deletePengguna/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete the user?')")),
+       anchor(changeLink('panel/masterData/updatePengguna/$1'), '<i class="fa fa-edit"> Edit</i>', array('class' => 'btn btn-warning btn-xs','style' => 'margin-top:5px;')) . ' '
+      . anchor(changeLink('panel/masterData/deletePengguna/$1'), '<i class="fa fa-times"> Delete</i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete the user?')")),
       'id_pengguna'
     );
     if (!empty($hak_akses)) {

@@ -43,7 +43,7 @@ class SurveiModel extends CI_Model {
     }
     $this->datatables->add_column(
       'action',
-      anchor(changeLink('panel/survey/deleteSurvey/$1'), '<i class="fa fa-times"></i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete survey?')")),
+      anchor(changeLink('panel/survey/deleteSurvey/$1'), '<i class="fa fa-times"> Delete</i>', array('class' => 'btn btn-danger btn-xs','style' => 'margin-top:5px;', "onclick" => "return confirm('Are you sure you want to delete survey?')")),
       'id_daftar_survei'
     );
     return print_r($this->datatables->generate('json'));

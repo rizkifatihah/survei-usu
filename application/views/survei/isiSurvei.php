@@ -60,37 +60,29 @@
                     </div>
                     <ol class="question-list">
                         <div>
+                            <li class="m-1 question-title">Apakah Anda Seorang Disabilitas?</li>
+                            <div id="disabilitas-options">
+                                <input type="hidden" name="id_pertanyaan-1" value="1">
+                                <input type="radio" name="question-1" id="disabilitas-ya" value="Ya" required>
+                                <label for="disabilitas-ya">Ya</label>
+                                
+                                <input type="radio" name="question-1" id="disabilitas-tidak" value="Tidak" required>
+                                <label for="disabilitas-tidak">Tidak</label>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Apakah Jenis Kelamin Anda?</li>
+                            <div id="jenis-kelamin-options">
+                                <input type="hidden" name="id_pertanyaan-2" value="2">
+                                <input type="radio" name="question-2" id="jenis-kelamin-laki" value="Laki-laki" required>
+                                <label for="jenis-kelamin-laki">Laki-laki</label>
+                                
+                                <input type="radio" name="question-2" id="jenis-kelamin-perempuan" value="Perempuan" required>
+                                <label for="jenis-kelamin-perempuan">Perempuan</label>
+                            </div>
+                        </div>
+                        <div>
                             <li class="m-1 question-title">Bagaimana kemudahan mendapatkan informasi persyaratan</li>
-                            <input type="hidden" name="id_pertanyaan-1"  value="1">
-                            <div id="satisfaction-slider">
-                                <input type="radio" name="question-1" id="question-1-ans-1" value="1" required>
-                                <label for="question-1-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
-                                <input type="radio" name="question-1" id="question-1-ans-2" value="2" required>
-                                <label for="question-1-ans-2" data-satisfaction="Tidak Puas"></label>
-                                <input type="radio" name="question-1" id="question-1-ans-3" value="3" required>
-                                <label for="question-1-ans-3" data-satisfaction="Puas"></label>
-                                <input type="radio" name="question-1" id="question-1-ans-4" value="4" required>
-                                <label for="question-1-ans-4" data-satisfaction="Sangat Puas"></label>
-                                <div id="satisfaction-pos-1"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <li class="m-1 question-title">Bagaimana kemudahan memenuhi persyaratan persyaratan pelayanan</li>
-                            <input type="hidden" name="id_pertanyaan-2"  value="2">
-                            <div id="satisfaction-slider">
-                                <input type="radio" name="question-2" id="question-2-ans-1" value="1" required>
-                                <label for="question-2-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
-                                <input type="radio" name="question-2" id="question-2-ans-2" value="2" required>
-                                <label for="question-2-ans-2" data-satisfaction="Tidak Puas"></label>
-                                <input type="radio" name="question-2" id="question-2-ans-3" value="3" required>
-                                <label for="question-2-ans-3" data-satisfaction="Puas"></label>
-                                <input type="radio" name="question-2" id="question-2-ans-4" value="4" required>
-                                <label for="question-2-ans-4" data-satisfaction="Sangat Puas"></label>
-                                <div id="satisfaction-pos-2"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <li class="m-1 question-title">Bagaimana kemudahan prosedur pelayanan</li>
                             <input type="hidden" name="id_pertanyaan-3"  value="3">
                             <div id="satisfaction-slider">
                                 <input type="radio" name="question-3" id="question-3-ans-1" value="1" required>
@@ -105,7 +97,7 @@
                             </div>
                         </div>
                         <div>
-                            <li class="m-1 question-title">Bagaimana ketepatan waktu dalam penyelesaian pelayanan</li>
+                            <li class="m-1 question-title">Bagaimana kemudahan memenuhi persyaratan persyaratan pelayanan</li>
                             <input type="hidden" name="id_pertanyaan-4"  value="4">
                             <div id="satisfaction-slider">
                                 <input type="radio" name="question-4" id="question-4-ans-1" value="1" required>
@@ -120,7 +112,7 @@
                             </div>
                         </div>
                         <div>
-                            <li class="m-1 question-title">Bagaimana kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan</li>
+                            <li class="m-1 question-title">Bagaimana kemudahan prosedur pelayanan</li>
                             <input type="hidden" name="id_pertanyaan-5"  value="5">
                             <div id="satisfaction-slider">
                                 <input type="radio" name="question-5" id="question-5-ans-1" value="1" required>
@@ -135,7 +127,7 @@
                             </div>
                         </div>
                         <div>
-                            <li class="m-1 question-title">Bagaimana kompetensi dan kemampuan petugas dalam memberikan pelayanan</li>
+                            <li class="m-1 question-title">Bagaimana ketepatan waktu dalam penyelesaian pelayanan</li>
                             <input type="hidden" name="id_pertanyaan-6"  value="6">
                             <div id="satisfaction-slider">
                                 <input type="radio" name="question-6" id="question-6-ans-1" value="1" required>
@@ -150,7 +142,7 @@
                             </div>
                         </div>
                         <div>
-                            <li class="m-1 question-title">Bagaimana perilaku petugas terkait kesopanan dan keramahan dalam memberikan pelayanan</li>
+                            <li class="m-1 question-title">Bagaimana kesesuaian produk pelayanan antara yang tercantum dalam standar pelayanan dengan hasil yang diberikan</li>
                             <input type="hidden" name="id_pertanyaan-7"  value="7">
                             <div id="satisfaction-slider">
                                 <input type="radio" name="question-7" id="question-7-ans-1" value="1" required>
@@ -165,7 +157,7 @@
                             </div>
                         </div>
                         <div>
-                            <li class="m-1 question-title">Bagaimana kualitas sarana dan prasarana pendukung pelayanan</li>
+                            <li class="m-1 question-title">Bagaimana kompetensi dan kemampuan petugas dalam memberikan pelayanan</li>
                             <input type="hidden" name="id_pertanyaan-8"  value="8">
                             <div id="satisfaction-slider">
                                 <input type="radio" name="question-8" id="question-8-ans-1" value="1" required>
@@ -180,18 +172,48 @@
                             </div>
                         </div>
                         <div>
+                            <li class="m-1 question-title">Bagaimana perilaku petugas terkait kesopanan dan keramahan dalam memberikan pelayanan</li>
+                            <input type="hidden" name="id_pertanyaan-9"  value="9">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-9" id="question-9-ans-1" value="1" required>
+                                <label for="question-9-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-9" id="question-9-ans-2" value="2" required>
+                                <label for="question-9-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-9" id="question-9-ans-3" value="3" required>
+                                <label for="question-9-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-9" id="question-9-ans-4" value="4" required>
+                                <label for="question-9-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-9"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <li class="m-1 question-title">Bagaimana kualitas sarana dan prasarana pendukung pelayanan</li>
+                            <input type="hidden" name="id_pertanyaan-10"  value="10">
+                            <div id="satisfaction-slider">
+                                <input type="radio" name="question-10" id="question-10-ans-1" value="1" required>
+                                <label for="question-10-ans-1" data-satisfaction="Sangat Tidak Puas"></label>
+                                <input type="radio" name="question-10" id="question-10-ans-2" value="2" required>
+                                <label for="question-10-ans-2" data-satisfaction="Tidak Puas"></label>
+                                <input type="radio" name="question-10" id="question-10-ans-3" value="3" required>
+                                <label for="question-10-ans-3" data-satisfaction="Puas"></label>
+                                <input type="radio" name="question-10" id="question-10-ans-4" value="4" required>
+                                <label for="question-10-ans-4" data-satisfaction="Sangat Puas"></label>
+                                <div id="satisfaction-pos-10"></div>
+                            </div>
+                        </div>
+                        <div>
                             <li class="m-1 question-title">Apakah anda diminta bayaran</li>
                             <div class="tf-container">
-                            <input type="hidden" name="id_pertanyaan-9"  value="9">
+                            <input type="hidden" name="id_pertanyaan-11"  value="11">
                             <div class="tf">
                                 <div>
-                                    <input type="radio" name="question-9" id="tf" class="Ya" value="YA" /><label>Iya</label>
+                                    <input type="radio" name="question-11" id="tf" class="Ya" value="YA" /><label>Iya</label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="question-9" id="tf" class="Tidak" value="TIDAK" /><label>Tidak</label>
+                                    <input type="radio" name="question-11" id="tf" class="Tidak" value="TIDAK" /><label>Tidak</label>
                                 </div>
                                 </div>
-                                <input type="text" class="input-tf" name="keterangan_tambahan[9]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;" >
+                                <input type="text" class="input-tf" name="keterangan_tambahan[11]" id="keterangan_tambahan" placeholder="Berapa & diberikan kepada?" style="display:none;" >
                                 <script>
                                     $('.Ya').click(function(){
                                         $('#keterangan_tambahan').show();
@@ -206,13 +228,13 @@
                             <div class="question-control">
                             <li class="m-1 question-title">Apakah tersedia tempat pengaduan</li>
                             <div class="tf-container">
-                            <input type="hidden" name="id_pertanyaan-10"  value="10">
+                            <input type="hidden" name="id_pertanyaan-12"  value="12">
                             <div class="tf">
                                 <div>
-                                    <input type="radio" value="YA" name="question-10" id="tf" /><label>Iya</label>
+                                    <input type="radio" value="YA" name="question-12" id="tf" /><label>Iya</label>
                                 </div>
                                 <div>
-                                    <input type="radio" value="TIDAK" name="question-10" id="tf" /><label>Tidak</label>
+                                    <input type="radio" value="TIDAK" name="question-12" id="tf" /><label>Tidak</label>
                                 </div>
                             </div>
                             </div>

@@ -135,6 +135,30 @@
                                 <?}?>
                             <?php } ?>
                             <?php endforeach; ?>
+                    <?php elseif($p->kategori_jawaban == '4'): ?>
+                        <?php $jawaban = $this->db->get_where('survei_jawaban', array('id_pertanyaan' => $p->id_pertanyaan,'id_detail_survei' => $jawaban[0]->id_detail_survei))->result();?>
+                        <?php foreach($jawaban as $j): ?>
+                            <?php if($j->jawaban == 'Ya'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Ya" checked> <label style="font-size:18px;margin-right:13px;">Ya</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak" disabled> <label style="font-size:18px;margin-right:13px;">Tidak</label>
+                            <?php elseif($j->jawaban == 'Tidak'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Ya" disabled> <label style="font-size:18px;margin-right:13px;">Ya</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Tidak" checked> <label style="font-size:18px;margin-right:13px;">Tidak</label>
+                            <?php endif; ?>
+                            <br>
+                            <?php endforeach; ?>
+                    <?php elseif($p->kategori_jawaban == '5'): ?>
+                        <?php $jawaban = $this->db->get_where('survei_jawaban', array('id_pertanyaan' => $p->id_pertanyaan,'id_detail_survei' => $jawaban[0]->id_detail_survei))->result();?>
+                        <?php foreach($jawaban as $j): ?>
+                            <?php if($j->jawaban == 'Laki-laki'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Laki-Laki" checked> <label style="font-size:18px;margin-right:13px;">Ya</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Perempuan" disabled> <label style="font-size:18px;margin-right:13px;">Tidak</label>
+                            <?php elseif($j->jawaban == 'Perempuan'): ?>
+                                <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Laki-Laki" disabled> <label style="font-size:18px;margin-right:13px;">Ya</label>
+                            <input type="radio" name="jawaban[<?php echo $p->id_pertanyaan; ?>]" value="Perempuan" checked> <label style="font-size:18px;margin-right:13px;">Tidak</label>
+                            <?php endif; ?>
+                            <br>
+                            <?php endforeach; ?>
                     <?php endif; ?>
                     <br><br>
                     </div>
